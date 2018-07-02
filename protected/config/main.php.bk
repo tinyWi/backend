@@ -1,0 +1,93 @@
+<?php
+// 主配置文件
+return array(
+	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+	'name'=>' | 游曳联运平台',
+	// pre load component
+	'preload'=>array('log'),
+	// auto load class
+	'import'=>array(
+		'application.models.*',
+		'application.components.*',
+		'application.extensions.PHPExcel.*',
+		'application.extensions.PHPMailer.*',
+		'application.extensions.tx.*', // 腾讯
+	),
+	// default ctrl/action
+	'defaultController'=>'Index/Login',
+	// components
+	'components'=>array(
+ 		'session'=>array(
+ 			'timeout'=>604800,
+ 		),
+		'user'=>array(
+			'allowAutoLogin'=>true,
+		),
+		'request' => array(
+            'enableCsrfValidation' => false,
+            'enableCookieValidation' => true,
+        ),
+		// url
+		'urlManager'=>array(
+			'urlFormat'=> 'path',
+			'rules'=>array(
+				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
+				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+			),
+		),
+		// rbac
+		'authManager'=>array(
+			'connectionID' => 'UEA',
+			'class' => 'CDbAuthManager',
+			'defaultRoles' => array('Common'),
+			'itemTable' => 'auth_item',
+			'itemChildTable' => 'auth_item_child',
+			'assignmentTable' => 'auth_assignment'
+		),
+		// backend database
+		'UEA'=>array(
+			'class' => 'CDbConnection',
+			'connectionString' => 'mysql:host=192.168.53.11;dbname=uea',
+			'emulatePrepare' => true,
+			'username' => 'caicai',
+			'password' => '123456',
+			'charset' => 'utf8',
+			'tablePrefix'=>''
+		),
+		// api database
+		'UER'=>array(
+			'class' => 'CDbConnection',
+			'connectionString' => 'mysql:host=192.168.53.11;dbname=caicai',
+			'emulatePrepare' => true,
+			'username' => 'caicai',
+			'password' => '123456',
+			'charset' => 'utf8',
+			'tablePrefix'=>''
+		),
+		// log
+		'log'=>array(
+			'class'=>'CLogRouter',
+			'routes'=>array(
+				array(
+					'class'=>'CFileLogRoute',
+					'levels'=>'error, warning',
+				),
+				// log level
+				array(
+					'class'=>'CWebLogRoute',
+					'levels'=>'trace',
+					'categories'=>'system.db.*'
+				),
+			),
+        ),
+		// error redirect
+		'errorHandler'=>array(
+			'errorAction'=>'Error/Error',
+		),
+	),
+	// timezone
+	'timeZone'=>'PRC',
+	// global var
+	'params'=>require(dirname(__FILE__).'/params.php')
+);

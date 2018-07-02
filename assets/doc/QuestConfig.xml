@@ -1,0 +1,1538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+line: 一个任务线.
+        id: 任务类型编号
+        visible: 是否显示在面板上 
+        name：任务类型名
+        level：等级限制
+        country,阵营
+        profession：职业
+        autoType: 做任务的自动类型，QuestConfig里配置的任务默认是3，FubenConfig里的任务默认配置是3
+                 0: 在任何情况下都不自动做任务，一般用在全手动副本任务里
+                 1: 只在普通状态下自动做任务（主要是服务器通知任务内容改变，客户端会自动做），一般用在主线任务和副本的非自动任务里
+                 3: 普通状态和任务刚接的时候都自动做任务，一般用在副本的自动任务里和非副本的支线任务里，比如个人押镖
+        priority：排序优先级，值越大，在左侧任务追踪栏的位置越靠上，默认0，小于0表示优先级更低，大于0表示优先级更高
+
+track: 任务里的一个追踪
+        id：任务步骤编号
+        level：等级限制，等级不足时不执行
+        levelTip：等级不足时内容提示，默认为“完成日常任务提升等级”
+        quest：任务名
+        info：任务追踪内容
+        click：点击任务追踪后触发的操作（wl代表寻路：地图名：npcid：x坐标：z坐标）
+        immediate: true表示当前任务追踪的里的所有act都马上执行（而不用执行click里的链接），这个等同于把它旗下的所有act的immediate属性都设置为true（一般用在副本任务线里）
+
+act   所有act都共同用于的属性：
+        immediate: 在需要执行当前act的时候，是否马上执行act，而不用先执行track里的click，默认false（即先执行track的click）
+        auto: 1为自动执行，0为不自动执行，默认1
+        totalComplete: 表明该任务线已彻底结束
+		    当前的可用act如下：	 
+
+        visit：访问任务      
+                npcid：目标npcid
+                storyid：剧情编号
+                giveGuard：大于零交护送（有此参数表示是护送任务） 
+                scene：场景id
+        
+        talk：剧情对话（注意不是真正的剧情，只是简单的对话）
+                storyid：剧情编号（QuestStory.xml里的配置）
+                npcid：npc id，它的胸像会在对话界面上显示
+
+        kill：杀怪任务
+                id：怪物id
+                num：怪物数量
+
+        collect：采集任务
+                id：npc id
+                num：采集数量
+
+        catchPet：抓宠任务
+                id：宠物id
+                num：宠物数量 
+                changeid：宠物变身后的id
+                objid：使用的抓宠道具id
+                
+        addGuard：增加护送npc
+                id: 待护送的npc id
+                type: 护送类型，type1是跟随玩家; type2需要玩家等npc
+
+        reward：给奖励        
+                 id：奖励编号
+
+		    playAudio: 播放声音（具体参数编辑器会自动生成）
+
+		    stopAudio: 停止播放声音
+                 id: 声音的全局id
+                 res: 声音资源id
+
+        progress: 任务进度条
+             id: 进度条id（在ProgressBar.xml里配置）
+             pos: 进度条开始的地点
+             radius: 进度条开始的范围（以pos为中心的半径）
+
+        effect: 播放特效
+             res: 特效资源
+             npcid: 播放在某个npc或人身上：-3(对当前的敌人播放)，-2(对队友播放)，-1(对自己播放)，0(对地播放，位置由pos属性给出)，大于0表示npc的静态id
+             pos: 特效播放在场景的位置（当npcid为0的时候有效）
+             dur: 持续时间，不填或者填-1表示让特效自动结束（一般不用填写）
+             nine: 是否通知9屏，0表示不通知（只有自己看见），1表示通知9屏（其他人都能看见），不填表示0
+             scale: 缩放比例，不填默认1（注意，缩放比例要控制住，缩放大小可能比你想象的要打得多得多）
+       
+         fuben: 开启副本
+             id: 副本id
+             type: 副本类型
+             delay: 客户端跑到指定地点后，延迟多久才开启副本（在开启无缝副本的时候，需要增加1秒左右的延迟，这样客户端和服务器的位置才可能同步）
+             continue: 是否在出副本的时候，继续执行之前的任务线
+
+         func: 做某个功能，做完之后才执行下一条任务
+             funcType: 执行功能的类型，比如，包括：
+                      storyFB: 打开剧情副本界面
+                      expFB: 打开单人副本界面并定位到经验副本选项
+                      ..
+              其它参数：不同type有不同参数
+          
+          goback: 回城
+              prgbar: 回城进度条id，不填采用默认进度条（当前默认是14）
+
+          story: 通知客户端播放剧情
+              id: 剧情id（StoryList.xml里配置）
+              end: 剧情结束后玩家位置的同步方式（单人副本里永远相信客户端最后位置）
+                    1：剧情开始时玩家的位置，默认
+                    2：固定位置，坐标由endPos指定
+                    3：相信客户端的最后位置
+              endPos: 剧情结束后玩家的位置（在end参数为2的时候有效）
+              block: 是否等到剧情结束后才执行后面的指令，默认true。（在单人副本里，可以填false，表示在剧情播放过程中继续执行其它act）
+
+            luaAct: lua指令
+               lua: 执行那个lua指令
+
+-->
+
+<config>
+  <line id="1" name="主" level="1" priority="10" autoType="1" autoTransf="2">
+    <track id="1" level="1" chapter="1" chapName="龙戒重现" chapPic="2-21-1" quest="攻打魔族" info="去找锡德里克将军" click="wl=黑石堡,85.11,163.43,1.33">
+        <act act="visit" npcid="152"/>
+      <act act="reward" id="601" npcid="152" text="盟军已集结攻城，年轻的勇士，快去加入战斗吧！"/>
+      <!--玩家等级2级奖励2级绿色头盔-->
+    </track>
+    <track id="801" level="1" quest="击败兽人" info="击败兽人%(10044/2)" click="wl=黑石堡,97.64,170.14,1.31">
+        <act act="kill" id="10044" num="2"/>
+    </track>
+    <track id="802" level="1" quest="击败兽人" info="去找法师阿道夫" click="wl=黑石堡,130.40,143.65,11.39">
+        <act act="visit" npcid="153"/>
+      <act act="reward" id="501,502,503" npcid="153" text="魔族的首领就在前方，击败它就能夺回我们的城池了！"/>
+      <!--玩家等级2级奖励2级绿色头盔-->
+    </track>
+    <track id="803" level="1" quest="夺回城池" info="击败雷凌兽%(1041/1)" click="wl=黑石堡,97.88,146.79,13.55">
+        <act act="kill" id="1041" num="1"/>
+    </track>
+    <track id="804" level="1" quest="夺回城池" info="去找兰斯中尉" click="wl=黑石堡,77.43,144.58,11.44">
+        <act act="visit" npcid="154"/>
+      <act act="reward" id="602" npcid="154" text="你为这次盟军夺回城池立下了汗马功劳，选一个阵营与我们并肩战斗吧！"/>
+      <!--玩家等级2级奖励2级绿色头盔-->
+      <act act="country" />    
+      <act act="goback" immediate="true"/>       
+    </track>    
+    <track id="805" level="1" quest="黑暗降临" info="与安娜对话" click="wl=主城,210.97,108.68,7.21">
+      <act act="visit" npcid="101"  storyid="1"/>
+      <act act="reward" id="504" npcid="101" text="别乱想了，快去找训练师好好练习本领吧"/>
+      <!-- 玩家等级1级，奖励1级绿色武器-->
+    </track>
+    <track id="2" level="1" quest="战力训练" info="去找训练师" click="wl=主城,162.90,114.11,7.67">
+        <act act="visit" npcid="103"/>
+      <act act="reward" id="603" npcid="103" text="我教你一个招式，你去城外对付那些野狼看看效果如何"/>
+      <!--玩家等级2级奖励2级绿色头盔-->
+    </track>
+    <track id="3" level="1" quest="小试身手" info="击败野狼%(10001/2)" click="wl=主城,96.28,120.85,4.74">
+        <act act="kill" id="10001" num="2"/>
+    </track>
+    <track id="1001" level="1" quest="小试身手" info="击败血狼王%(10062/1)" click="wl=主城,70.73,140.48,2.30">   
+        <act act="kill" id="10062" num="1"/>
+    </track>   
+    <track id="4" level="1" quest="小试身手" info="去找禁卫队长巴伦" click="wl=主城,108.40,163.57,3.83">
+      <act act="visit" npcid="104"/>
+      <act act="reward" id="505" npcid="104" text="你的战斗力增进不少嘛，去帮夏洛特一起对付魔族吧"/>
+      <!--玩家等级2级升星石*1-->
+    </track>
+    <track id="5" level="1" quest="魔族来袭" info="去帮助夏洛特" click="wl=主城,153.76,188.63,5.46">
+      <act act="visit" npcid="117" storyid="11" auto="0"/>
+      <act act="reward" id="506" npcid="117" text="那好，多加小心！"/>
+      <!--玩家等级3级奖励绿色项链-->
+      <act act="transfig" id="7"/>          
+    </track>
+    <track id="1002" level="1" quest="魔族阴谋" info="乔装大树打探情报" click="wl=主城,143.28,219.04,5.44">
+      <act act="story" id="7" end="3"/> 
+    </track>
+    <track id="6" level="1" quest="魔族阴谋" info="击败熊兵%(10003/3)" click="wl=主城,152.06,228.62,5.44">
+      <act act="kill" id="10003" num="3"/>
+    </track>
+    <track id="7" level="1" quest="魔族阴谋" info="去找夏洛特" click="wl=主城,153.76,188.63,5.46">
+      <act act="visit" npcid="117"/>
+      <act act="reward" id="507,508,509" npcid="117" text="快去通知兰斯中尉，让他做好防备"/>
+      <!--玩家等级6级奖励6级绿色护腕-->
+      <act act="transfig" id="0"/>  
+    </track>   
+    <track id="8" level="1" quest="兵临城下" info="向兰斯汇报" click="wl=主城,212.72,188.85,5.22">
+      <act act="visit" npcid="102"/>
+      <act act="reward" id="510" npcid="102" text="魔族发起了突袭，快去城墙上击退他们！"/>
+      <!--玩家等级4级奖励4级绿色衣服-->
+    </track>     
+    <track id="9" level="1" country="1" quest="发起反攻" info="击败魔族士兵%(0/6)" click="wl=主城,180.30,190.00,15.56">
+      <act act="fuben" id="3" type="7" delay="0.5" continue="true" auto="0"/>
+    </track>
+    <track id="9" level="1" country="2" quest="发起反攻" info="击败魔族士兵%(0/6)" click="wl=主城,180.30,190.00,15.56">
+      <act act="fuben" id="4" type="7" delay="0.5" continue="true" auto="0"/>
+    </track>    
+    <track id="10" level="1" quest="发起反攻" info="向兰斯汇报" click="wl=主城,212.72,188.85,5.22">
+      <act act="visit" npcid="102"/>
+      <act act="reward" id="511" npcid="102" text="魔族这次好像有什么目的，去找魔法师特雷西打探一下消息吧"/>
+      <!--玩家等级4级奖励4级绿色衣服-->
+    </track>
+    <track id="11" level="1" quest="打探敌情" info="去找魔法师特雷西" click="wl=主城,193.37,257.93,3.57">
+      <act act="visit" npcid="112"/>
+      <act act="reward" id="512" npcid="112" text="我的小花精应该能有收获了，不过她们害怕那些毒蜂，都躲起来了"/>
+      <!--玩家等级5级升星石*2-->
+    </track>
+    <track id="12" level="1" quest="特别情报" info="击败毒蜂%(10002/5)" click="wl=主城,170.08,266.80,-1.64">
+      <act act="kill" id="10002" num="5" auto="0" />
+      <act act="story" id="4" end="3"/>    
+      <act act="addGuard" id="20001" type="1"/>       
+    </track>
+    <track id="13" level="1" quest="特别情报" info="带花精去找特雷西" click="wl=主城,193.37,257.93,3.57">
+      <act act="visit" npcid="112" scene="0" giveGuard="1" immediate="true" />
+      <act act="reward" id="513" npcid="112" text="花精告诉我一大批龙人聚集在营地里，去帮锡德里克将军对付他们吧"/>
+      <!--玩家等级5级5级绿色鞋子-->
+    </track>
+    <track id="14" level="1" quest="龙人营地" info="去找锡德里克将军" click="wl=主城,145.53,287.85,-1.67">
+      <act act="visit" npcid="110"/>
+      <act act="reward" id="514" npcid="110" text="龙人营地就在前面，我们准备采用火攻，不过里面驻扎了龙人大军，要多加小心"/>
+      <!--玩家等级13级，13级绿色项链-->
+    </track>
+    <track id="15" level="1" quest="火烧营地" info="击败龙人大军%(0/6)" click="wl=主城,171.35,324.02,-3.96">
+      <act act="kill" id="10006,10007" num="6" />
+    </track>
+    <track id="16" level="1" quest="火烧营地" info="烧毁龙人营地" click="wl=主城,153.34,318.07,-1.76">
+        <act act="progress" id="3" pos="153.34,318.07,-1.76" radius="0"/>
+        <act act="effect" res="4,1,26" npcid="0" pos="150.34,320.07,-1.76" dur="15" scale="3"/> 
+        <act act="delay" seconds="1"/>
+    </track>
+    <track id="17" level="1" quest="火烧营地" info="烧毁龙人营地" click="wl=主城,179.54,323.98,-4.03">
+        <act act="progress" id="3" pos="179.54,323.98,-4.03" radius="0"/>
+        <act act="effect" res="4,1,26" npcid="0" pos="184.54,323.98,-4.03" dur="15" scale="3"/> 
+        <act act="delay" seconds="1"/>
+    </track>        
+    <track id="18" level="1" quest="火烧营地" info="去找锡德里克将军" click="wl=主城,145.53,287.85,-1.67">
+      <act act="visit" npcid="110"/>
+      <act act="reward" id="515" npcid="110" text="魔族遭受如此打击，定然会伺机报复，快回城内协助兰斯中尉吧"/>
+      <!--玩家等级13级，13级绿色项链-->
+    </track>
+    <track id="19" level="1" quest="魔族复仇" info="去找兰斯中尉" click="wl=主城,212.72,188.85,5.22">
+      <act act="ride" on="0"/>
+      <act act="story" id="3" end="3" immediate="true"/>
+      <act act="visit" npcid="102"/>
+      <act act="reward" id="516" npcid="102" text="魔族果然大举入侵，已攻到了酒馆附近，赶快去击退他们！"/>
+      <!--玩家等级15级绿色衣服-->
+    </track>    
+    <track id="20" level="1" country="1" quest="化解危机" info="击败魔族士兵%(0/6)" click="wl=主城,208.12,162.56,7.32">
+      <act act="fuben" id="5" type="7" delay="0.5" continue="true"/>
+    </track>
+    <track id="20" level="1" country="2" quest="化解危机" info="击败魔族士兵%(0/6)" click="wl=主城,208.12,162.56,7.32">
+      <act act="fuben" id="6" type="7" delay="0.5" continue="true"/>
+    </track>    
+    <track id="21" level="1" quest="化解危机" info="去找乔伊" click="wl=主城,254.07,142.58,7.62">
+      <act act="visit" npcid="108" storyid="12"/>
+      <act act="reward" id="517" npcid="108" text="当然了，我也有礼物送给你，等会记得再来找我吧。"/>
+      <!--玩家等级7级绿色戒指-->
+    </track>
+    <track id="22" level="1" quest="提升装备" info="去找铁匠米利亚姆" click="wl=主城,264.70,102.25,7.62">
+      <act act="visit" npcid="106" auto="0"/>
+      <act act="reward" id="518" npcid="106" text="装备强化可以大大增强你的战斗力，记得要经常强化哦"/>
+      <!--玩家等级10级技能升级石*10-->
+    </track>    
+    <track id="23" level="1" quest="战斗伙伴" info="去酒馆找乔伊" click="wl=主城,254.07,142.58,7.62">
+      <act act="visit" npcid="108" auto="0"/>
+      <act act="reward" id="519" npcid="108" text="你需要一个战斗伙伴，南希会告诉你怎么获得的，不过你得去帮她采些野果来酿酒"/>  
+      <!--玩家等级11级11级绿色武器-->
+    </track>
+    <track id="24" level="1" quest="采集野果" info="采集野果%(903/3)" click="wl=主城,319.07,136.85,6.05">
+      <act act="collect" id="903" num="3"/>
+    </track>
+    <track id="25" level="1" quest="采集野果" info="将野果交给南希" click="wl=主城,309.10,199.67,5.95">
+      <act act="visit" npcid="111"/>
+      <act act="reward" id="520,521,522" npcid="111" text="那些钢背兽又来偷野果，虽然它们很调皮，但要是能驯服它们，可是你作战的好伙伴哦！"/>
+      <!--玩家等级11级技能升级石*10-->
+    </track>
+    <track id="1003" level="1" quest="捕捉宠物" info="跳舞引出钢背猪" click="wl=主城,315.02,219.07,5.44">
+      <act act="story" id="8" end="3"/> 
+    </track>
+    <track id="26" level="1" quest="捕捉宠物" info="捕捉钢背兽%(40051/2)" click="wl=主城,327.40,228.45,2.61">
+      <act act="catchPet" npcid="40051" changeid="50501" objid="244" num="2"  dropReward="1401"/>
+    </track>
+    <track id="27" level="1" quest="捕捉宠物" info="去找南希" click="wl=主城,309.10,199.67,5.95">
+      <act act="visit" npcid="111"/>
+      <act act="reward" id="523" npcid="111" text="有了宠物，你的战斗力会大大增强哦"/>
+      <!--玩家等级12级，宠物升阶材料-->
+      <act act="addPet" id="1"/>      
+    </track>    
+    <track id="28" level="1" quest="汇报中尉" info="去找兰斯中尉" click="wl=主城,212.72,188.85,5.22">
+      <act act="visit" npcid="102" auto="0"/>
+      <act act="reward" id="524" npcid="102" text="不错，你的实力提升了不少嘛。特雷西说他准备了些物资要送去前线，能帮他一下吗？"/>
+      <!--玩家等级15级绿色衣服-->
+    </track>     
+<!--    <track id="29" level="1" quest="广场杀敌" info="挑战剧情副本" click="wl=主城,238,200,-0.02">
+      <act act="func" funcType="storyFB" immediate="true" auto="0" />
+    </track>   -->   
+    <track id="30" level="1" quest="备战物资" info="去找特雷西" click="wl=主城,193.37,257.93,3.57">
+      <act act="visit" npcid="112"/>
+      <act act="reward" id="525" npcid="112" text="前线告急，帮我把这车物资送给军需官菲尔吧"/>
+      <act act="addGuard" id="20004" type="1"/>      
+      <!--玩家等级15级绿色衣服-->
+    </track>     
+    <track id="31" level="1" quest="护送物资" info="将物资送给菲尔" click="wl=主城,239.44,321.31,-2.70">
+      <act act="visit" npcid="121" scene="0" giveGuard="1" immediate="true" />
+      <act act="reward" id="526" npcid="121" text="谢谢你，魔族让城外的一些生物发生了变异，快去消灭他们"/>
+      <!--玩家等级9级升星石*3-->
+    </track>
+    <track id="32" level="1" quest="变异生物" info="击败狗头人%(10004/8)" click="wl=主城,259.79,344.37,-7.35">
+      <act act="kill" id="10004" num="8" auto="0" />
+    </track>
+    <track id="33" level="1" quest="变异生物" info="去找菲尔" click="wl=主城,239.44,321.31,-2.70">
+      <act act="visit" npcid="121"/>
+      <act act="reward" id="527,528,529" npcid="121" text="骑士海泽尔被困在了萨克尔人的地盘，能帮忙解救他吗？"/>
+      <!--玩家等级9级升星石*3-->
+    </track>    
+    <track id="34" level="1" quest="解救骑士" info="击败萨克尔武士%(10064/8)" click="wl=主城,315.76,340.89,-10.87">
+      <act act="kill" id="10064" num="8"/>
+      <act act="story" id="2" end="3"/>      
+      <act act="transfig" id="3"/>      
+    </track>
+    <!--track id="35" level="1" quest="解救骑士" info="击败萨克尔祭祀%(10065/1)" click="wl=主城,349.03,325.68,-9.92">
+      <act act="kill" id="10065" num="1"/>
+    </track-->
+    <track id="36" level="1" quest="解救骑士" info="找到海泽尔" click="wl=主城,379.47,322.94,-8.76">
+      <act act="visit" npcid="107"/>
+      <act act="reward" id="530" npcid="107" text="谢谢你，只有牧师米凯拉能解除你中的魔法，不过要小心路上的巨石怪"/>
+      <!--玩家等级9级升星石*3-->
+    </track>   
+    <track id="37" level="1" quest="求助牧师" info="击败巨石怪%(10005/8)" click="wl=主城,364.90,288.80,-5.32">
+      <act act="kill" id="10005" num="8"/>
+    </track>
+    <track id="38" level="1" quest="求助牧师" info="去找米凯拉帮忙" click="wl=主城,347.32,202.84,-0.29">
+      <act act="visit" npcid="109"/>
+      <act act="reward" id="531" npcid="109" text="我可以帮你解除魔法，但我的施法材料用完了，你得去帮我弄些龙血花来"/>
+      <!--玩家等级15级15级绿色鞋子-->
+    </track>
+    <track id="39" level="1" quest="施法材料" info="击败石像鬼%(10063/5)" click="wl=主城,353.10,159.80,3.54">
+      <act act="kill" id="10063" num="5"/>
+    </track>
+    <track id="40" level="1" quest="施法材料" info="采集龙血花%(904/1)" click="wl=主城,342.56,133.59,4.31">
+      <act act="collect" id="904" num="1"/>
+    </track>
+    <track id="41" level="1" quest="施法材料" info="将龙血花交给米凯拉" click="wl=主城,347.32,202.84,-0.29">
+      <act act="visit" npcid="109"/>
+      <act act="reward" id="532" npcid="109" text="你的魔法已经解除了，我们在墓地深处发现了精英龙人的足迹，他们可比普通的龙人强大很多..."/>
+      <act act="transfig" id="0"/>
+      <!--玩家等级16级16级绿色护腕-->
+    </track>
+    <track id="42" level="1" quest="深入龙穴" info="击败精英龙人%(10008/1)" click="wl=主城,362.72,105.99,4.98">
+      <act act="kill" id="10008" num="1"/>
+    </track>
+    <track id="43" level="1" quest="深入龙穴" info="进攻魔族巢穴" click="wl=主城,364.49,84.81,7.69" transfer="1">
+      <act act="fuben" id="90" type="1"/>    
+    </track>
+    <track id="1004" level="1"  quest="深入龙穴" info="去找瓦妮莎" click="wl=主城,187.75,119.52,7.62">
+      <act act="goback" immediate="true"/>      
+      <act act="visit" npcid="156"/>
+      <act act="reward" id="533" levelTip="通关经验副本提升等级" npcid="156" text="你的表现很出色，这匹战狼坐骑送给你，希望你能早日击败魔族。"/>
+      <!--玩家等级15级15级绿色鞋子-->
+      <act act="addHorse"/>    
+    </track>
+    <track id="44" level="1" chapter="2" chapName="星月湾奇遇" chapPic="2-38-1" quest="新的征途" info="去找兰斯中尉" click="wl=主城,212.72,188.85,5.22">
+      <act act="visit" npcid="102" auto="0"/>
+      <act act="reward" id="530" levelTip="通关经验副本提升等级" npcid="102" text="危机暂时解除了，但我们在星月湾发现了新的魔族线索，去找艾琳吧，她会告诉你如何去星月湾"/>
+      <!--玩家等级18级绿色腰带-->        
+    </track>
+    <track id="1005" level="1"  quest="新的征途" info="去找艾琳" click="wl=主城,95.34,208.52,-2.37">
+      <act act="visit" npcid="155" storyid="13"/>
+      <!--玩家等级15级15级绿色鞋子-->       
+    </track>    
+    <track id="45" level="1" quest="新的征途" info="去星月湾找温士顿" click="wl=星月湾,616.72,582.67,-2.42">
+      <act act="visit" npcid="113"/>
+      <act act="reward" id="534" npcid="113" text="最近海盗经常来这里打劫，你能协助格里格对付海盗吗？"/>
+      <!--玩家等级19级20个黑铁1个2级玄铁-->
+    </track>
+    <track id="46" level="1" quest="海盗之患" info="去协助格里格" click="wl=星月湾,584.45,586.82,-2.05">
+      <act act="visit" npcid="123"/>
+      <act act="reward" id="535" npcid="123" text="那些海盗很是猖狂，一定得好好教训一下他们"/>
+      <!--玩家等级20级一个3级攻击宝石-->
+    </track>    
+    <track id="47" level="1" quest="击退海盗" info="击败海盗%(10011/10)" click="wl=星月湾,585.80,612.20,-2.41">
+      <act act="kill" id="10011" num="10"/>
+    </track>
+    <track id="48" level="1" quest="击退海盗" info="去找格里格" click="wl=星月湾,584.45,586.82,-2.05">
+      <act act="visit" npcid="123"/>
+      <act act="reward" id="536" npcid="123" text="多谢，不知道我们的物资损失了多少，你能帮我清点一下吗？"/>
+      <!--玩家等级21级一个21级武器-->
+    </track>
+    <track id="49" level="1" quest="清点物资" info="帮格里格清点物资" click="wl=星月湾,626.96,610.78,-0.07">
+      <act act="progress" id="8" pos="626.96,610.78,-0.07" radius="0"/>
+      <act act="effect" res="4,3,2" npcid="-1"/>       
+    </track>
+    <track id="50" level="1" quest="清点物资" info="向温士顿汇报" click="wl=星月湾,616.72,582.67,-2.42">
+      <act act="visit" npcid="113"/>
+      <act act="reward" id="537" npcid="113" text="狄克出去巡逻一直没回来，能帮我去寻找一下吗？罗拉可以帮你渡海，不过星月湾很危险，你先去试炼之境提升一下等级吧"/>
+      <!--玩家等级21级一个3级生命宝石-->
+    </track>
+    <track id="51" level="1" quest="试炼之境" info="挑战试炼之境" click="wl=星月湾,616.72,582.67,-2.42">
+      <act act="func" funcType="expFB" immediate="true" auto="0"/>
+    </track>    
+    <track id="52" level="1" quest="试炼之境" info="去找罗拉" click="wl=星月湾,601.21,564.33,-2.29">
+      <act act="visit" npcid="124"/>
+      <act act="reward" id="538" npcid="124" text="我可以帮你渡海，但你得先帮我干掉那只邪恶的飞龙！"/>
+      <!--玩家等级22级一个绿色头盔-->
+    </track>    
+    <track id="53" level="19" quest="邪恶飞龙" info="击败飞龙%(10037/1)" click="wl=星月湾,641.80,558.00,-2.37">
+      <act act="kill" id="10037" num="1"/>
+    </track>
+    <track id="54" level="19" quest="邪恶飞龙" info="去找罗拉" click="wl=星月湾,601.21,564.33,-2.29">
+      <act act="visit" npcid="124"/>
+      <act act="reward" id="539" npcid="124" text="不错，我已经在你身上施了法术，你到海边自然就知道了"/>
+      <!--玩家等级23级一个绿色项链-->
+    </track>
+    <track id="55" level="19" quest="神奇法术" info="偶遇美人鱼" click="wl=星月湾,563.01,555.01,-6.20">
+      <act act="visit" npcid="125"/>
+      <act act="reward" id="540" npcid="125" text="我的同伴遭到了鲨鱼的攻击，现在搁浅在岸边，能帮我救救她吗？"/>
+      <!--玩家等级24级一个绿色衣服-->
+    </track>   
+    <track id="56" level="19" quest="拯救美人鱼" info="拯救受伤的美人鱼" click="wl=星月湾,580.85,532.19,-6.42">
+      <act act="progress" id="9" pos="580.85,533.19,-6.42" radius="0"/>
+      <act act="effect" res="4,3,2" npcid="-1"/>               
+      <act act="addGuard" id="20005" type="1"/>      
+    </track>
+    <track id="57" level="19" quest="拯救美人鱼" info="将美人鱼带回" click="wl=星月湾,563.01,555.01,-6.20">
+      <act act="visit" npcid="125" scene="0" giveGuard="1" immediate="true"/>
+      <act act="reward" id="541" npcid="125" text="那些鲨鱼狂暴异常，像是被施了魔法......"/>
+      <!--玩家等级25级一个绿色鞋子-->
+    </track>         
+    <track id="58" level="19" quest="变异鲨鱼" info="击败鲨鱼%(10016/10)" click="wl=星月湾,521.61,577.37,-6.41">
+      <act act="kill" id="10016" num="10"/>
+    </track>
+    <track id="59" level="19" quest="变异鲨鱼" info="去找美人鱼" click="wl=星月湾,563.01,555.01,-6.20">
+      <act act="visit" npcid="125"/>
+      <act act="reward" id="542" npcid="125" text="谢谢你，听我的同伴说，在星月岛上看到一个士兵，不知道是你要找的不"/>
+      <!--玩家等级25级一个绿色宠物材料-->
+    </track>
+    <track id="60" level="19" quest="寻找士兵" info="找到士兵" click="wl=星月湾,522.51,524.15,-1.23">
+      <act act="visit" npcid="114"/>
+      <act act="reward" id="543" npcid="114" text="我就是狄克，我是跟踪那些海盗来到这的，小心他们就在那边"/>
+      <!--玩家等级26级一个绿色护腕-->
+    </track>
+    <track id="61" level="19" quest="海盗营地" info="击败海盗杀手%(10038/12)" click="wl=星月湾,542.85,510.69,2.37">
+      <act act="kill" id="10038" num="12"/>
+    </track>    
+    <track id="62" level="19" quest="海盗营地" info="击败海盗头目%(10039/1)" click="wl=星月湾,566.38,511.22,4.20">
+      <act act="kill" id="10039" num="1"/>
+    </track>    
+    <track id="63" level="19" quest="海盗营地" info="去找狄克" click="wl=星月湾,522.51,524.15,-1.23">
+      <act act="visit" npcid="114"/>
+      <act act="reward" id="544" npcid="114" text="终于解决了这伙海盗，我的小船停在岸边恐怕不安全，能帮我固定一下吗？"/>
+      <!--玩家等级27级-->
+    </track>  
+    <track id="64" level="19" quest="固定小船" info="帮狄克固定小船" click="wl=星月湾,554.06,527.08,-1.23">
+      <act act="progress" id="10" pos="554.06,527.08,-1.23" radius="0"/>
+      <act act="effect" res="4,3,2" npcid="-1"/>         
+    </track>    
+    <track id="65" level="19" quest="固定小船" info="去找狄克" click="wl=星月湾,522.51,524.15,-1.23">
+      <act act="visit" npcid="114"/>
+      <act act="reward" id="545" npcid="114" text="快看那边，我从来没见过钳子这么大的螃蟹......"/>
+      <!--玩家等级27级-->
+    </track> 
+    <track id="66" level="19" quest="巨钳螃蟹" info="击败巨钳蟹%(10014/15)" click="wl=星月湾,496.20,515.10,-0.77">
+      <act act="kill" id="10014" num="15"/>
+    </track>  
+    <track id="67" level="19" quest="巨钳螃蟹" info="去找狄克" click="wl=星月湾,522.51,524.15,-1.23">
+      <act act="visit" npcid="114"/>
+      <act act="reward" id="546" npcid="114" text="前面路上似乎有血迹，肯定有人受伤了"/>
+      <!--玩家等级27级-->
+    </track>           
+    <track id="68" level="19" quest="跟踪血迹" info="找到受伤之人" click="wl=星月湾,533.64,490.28,5.73">
+      <act act="visit" npcid="115"/>
+      <act act="reward" id="547" npcid="115" text="我叫希尔达，被附近的怪物袭击了，现在伤口有点发炎，听说四叶草可以消毒，能帮我采些来吗？"/>
+      <!--玩家等级27级-->
+    </track>    
+    <track id="69" level="24" levelTip="完成日常任务提升等级" quest="救助伤者" info="采集四叶草%(905/3)" click="wl=星月湾,571.20,481.00,8.53">
+      <act act="collect" id="905" num="3"/>
+    </track>
+    <track id="70" level="24" quest="救助伤者" info="将草药交给希尔达" click="wl=星月湾,533.64,490.28,5.73">
+      <act act="visit" npcid="115"/>
+      <act act="reward" id="548" npcid="115" text="多谢，我是被那些变异的鱼怪咬伤的，不知道它们从何而来......"/>
+      <!--玩家等级27级-->
+    </track>
+    <track id="71" level="24" quest="变异鱼人" info="击败魔鱼怪%(10015/15)" click="wl=星月湾,465.30,455.97,1.86">
+      <act act="kill" id="10015" num="15"/>
+    </track>
+    <track id="72" level="24" quest="变异鱼人" info="去找希尔达" click="wl=星月湾,533.64,490.28,5.73">
+      <act act="visit" npcid="115"/>
+      <act act="reward" id="549" npcid="115" text="关于魔族的事，你可以去问问我师父艾伯纳，他可是阿斯图亚家族的后人"/>
+      <!--玩家等级27级-->
+    </track>
+    <track id="73" level="24" quest="阿斯图亚" info="去找艾伯纳" click="wl=星月湾,529.58,444.79,7.83">
+      <act act="visit" npcid="118"/>
+      <act act="reward" id="550" npcid="118" text="是谁派你来的，要想让我相信你，得看你能否激活阿斯图亚家族的石像，我一直等待一个有缘之人"/>
+      <!--玩家等级27级-->
+    </track>
+    <track id="74" level="24" quest="有缘之人" info="激活阿斯图亚石像" click="wl=星月湾,552.06,462.08,6.71">
+      <act act="progress" id="11" pos="552.06,462.08,6.71" radius="0"/>
+      <act act="effect" res="4,1,28" npcid="0" pos="552.01,462.01,6.71" dur="5"/>      
+      <act act="delay" seconds="3"/>  
+    </track>  
+    <track id="75" level="24" quest="有缘之人" info="去找艾伯纳" click="wl=星月湾,529.58,444.79,7.83">
+      <act act="visit" npcid="118"/>
+      <act act="reward" id="551" npcid="118" text="你真的是有缘之人，我怀疑这岛上的怪物就与阿莎德隆戒指有关，海底肯定发生了什么......"/>
+      <!--玩家等级27级-->
+    </track>        
+    <track id="76" level="24" quest="海底之变" info="击败娜迦海妖%(10017/1)" click="wl=星月湾,555.35,433.07,6.41">
+      <act act="kill" id="10017" num="1"/>
+    </track>
+    <track id="77" level="24" quest="海底之变" info="去找艾伯纳" click="wl=星月湾,529.58,444.79,7.83">
+      <act act="visit" npcid="118"/>
+      <act act="reward" id="552" npcid="118" text="海底的魔王已经蠢蠢欲动了，我们必须要做点什么"/>
+      <!--玩家等级27级-->
+    </track>
+    <track id="78" level="24" quest="形势不妙" info="去找狄克" click="wl=星月湾,522.51,524.15,-1.23">
+      <act act="visit" npcid="114"/>
+      <act act="reward" id="553" npcid="114" text="看来这里也很危险了，离这里不远还有一个小岛，不知道可有什么消息"/>
+      <!--玩家等级27级-->
+    </track>     
+    <track id="79" level="24"  chapter="3" chapName="深海谜团" chapPic="2-27-1" quest="新的海域" info="击败海岛守卫%(0/10)" click="wl=星月湾,495.22,601.02,-6.39">
+      <act act="fuben" id="7" type="7" delay="0.5" continue="true"/>
+    </track>  
+    <track id="80" level="24" quest="新的海域" info="去找马勒第兹" click="wl=星月湾,457.86,604.91,4.18">
+      <act act="visit" npcid="127"/>
+      <act act="reward" id="554" npcid="127" text="这里是幽灵湾，最近怪物时常骚扰，我们必须加强戒备。士兵莫雷正在海边巡视，你可以去跟他聊聊"/>
+      <!--玩家等级27级-->
+    </track>     
+    <track id="81" level="24" quest="幽灵港湾" info="去幽灵湾找莫雷" click="wl=幽灵湾,563.22,575.53,6.21">
+      <act act="visit" npcid="128"/>
+      <act act="reward" id="555" npcid="128" text="我在海上巡视的时候，发现了一群魔化的美人鱼，她们会把人拖入海中......"/>
+      <!--玩家等级27级-->
+    </track>     
+    <track id="82" level="27" quest="魔化美人鱼" info="击败魔化美人鱼%(10012/20)" click="wl=幽灵湾,525.04,631.05,-7.79">
+      <act act="kill" id="10012" num="20"/>
+    </track>            
+    <track id="83" level="27" quest="魔化美人鱼" info="去找莫雷" click="wl=幽灵湾,563.22,575.53,6.21">
+      <act act="visit" npcid="128"/>
+      <act act="reward" id="556" npcid="128" text="传说幽灵湾的海底藏有宝藏，不知道是不是真的..."/>
+      <!--玩家等级27级-->
+    </track>    
+    <track id="84" level="27" quest="探索海域" info="去附近海域探索" click="wl=幽灵湾,501.00,610.10,-7.79">
+      <act act="progress" id="12" pos="501.00,610.10,-7.79" radius="0"/>
+      <act act="effect" res="4,1,40" npcid="0" pos="502.11,607.68,3.89" dur="5"/> 
+      <act act="delay" seconds="3"/>      
+    </track>    
+    <track id="85" level="27" quest="探索海域" info="击败袭击者%(0/8)" click="wl=幽灵湾,493.20,636.50,-7.79">
+      <act act="fuben" id="8" type="7" delay="0.5" continue="true"/>
+    </track>  
+    <track id="86" level="27" quest="探索海域" info="去找莫雷" click="wl=幽灵湾,563.22,575.53,6.21">
+      <act act="visit" npcid="128"/>
+      <act act="reward" id="557" npcid="128" text="我的同伴在海中间发现了一艘古老的幽灵船，不过船上有很多奇怪的生物"/>
+      <!--玩家等级27级-->
+    </track>          
+    <track id="87" level="27" quest="幽灵船" info="找到佛吉尔" click="wl=幽灵湾,487.06,497.15,3.04">
+      <act act="visit" npcid="129"  storyid="5"/>
+      <act act="reward" id="558" npcid="129" text="那些女妖又出现了，吓死宝宝了！快干掉她们"/>
+      <!--玩家等级27级-->
+    </track> 
+    <track id="88" level="27" quest="击败水妖" info="击败水妖%(10040/20)" click="wl=幽灵湾,478.66,505.54,2.11">
+      <act act="kill" id="10040" num="20"/>
+    </track>  
+    <track id="89" level="27" quest="击败水妖" info="去找佛吉尔" click="wl=幽灵湾,487.06,497.15,3.04">
+      <act act="visit" npcid="129"/>
+      <act act="reward" id="559" npcid="129" text="还有那些影魂，他们好像没有身体，得用特殊的办法对付才行"/>
+      <act act="transfig" id="4"/>
+      <!--玩家等级27级-->
+    </track>             
+    <track id="90" level="27" quest="重炮出击" info="炮击影魂%(10013/20)" click="wl=幽灵湾,457.23,505.74,2.96">
+      <act act="kill" id="10013" num="20"/>
+    </track>  
+    <track id="91" level="27" quest="重炮出击" info="去找佛吉尔" click="wl=幽灵湾,487.06,497.15,3.04">
+      <act act="visit" npcid="129"/>
+      <act act="reward" id="560" npcid="129" text="船里有不少遗物，不知道有没有什么宝贝"/>
+      <act act="transfig" id="0"/>      
+      <!--玩家等级27级-->
+    </track>             
+    <track id="92" level="27" quest="搜索遗物" info="搜索船上的遗物" click="wl=幽灵湾,463.01,511.01,2.11">
+      <act act="progress" id="13" pos="463.01,511.01,2.11" radius="0"/>        
+    </track>  
+    <track id="93" level="27" quest="搜索遗物" info="去找佛吉尔" click="wl=幽灵湾,487.06,497.15,3.04">
+      <act act="visit" npcid="129"  storyid="6"/>
+      <act act="reward" id="561" npcid="129" text="吓死宝宝了，我们还是去找主人帮忙吧，她一定有办法恢复这些文字"/>
+      <!--玩家等级27级-->
+    </track>   
+    <track id="94" level="27" quest="船长日记" info="去找玛西亚" click="wl=幽灵湾,446.18,392.89,2.64">
+      <act act="visit" npcid="130"/>
+      <act act="reward" id="562" npcid="130" text="我需要一些材料来修复这本日记，就在海边仓库那里"/>
+      <!--玩家等级27级-->
+    </track>   
+    <track id="95" level="27" quest="修复日记" info="去仓库寻找材料" click="wl=幽灵湾,497.01,423.01,-1.94">
+      <act act="progress" id="16" pos="497.01,423.01,-1.94" radius="0"/>  
+      <!--玩家等级27级-->
+    </track>          
+    <track id="96" level="27" quest="修复日记" info="击败魔鱼怪%(0/12)" click="wl=幽灵湾,493.20,425.10,-1.94">
+      <act act="fuben" id="10" type="7" delay="0.5" continue="true"/>
+    </track>  
+    <track id="97" level="27" quest="修复日记" info="去找玛西亚" click="wl=幽灵湾,446.18,392.89,2.64">
+      <act act="visit" npcid="130"/>
+      <act act="reward" id="563" npcid="130" text="日记里记载了他们去搜索海底宝藏时，遇到了可怕的怪物，我觉得这一定跟龙戒有关，也许该去海底调查一番"/>
+      <!--玩家等级27级-->
+    </track>  
+    <track id="98" level="31" quest="初探海底" info="去深海之底找哈利" click="wl=深海之底,90.49,75.29,-0.70">
+      <act act="visit" npcid="143"/>
+      <act act="reward" id="564" npcid="143" text="主人派我来协助你调查，前面发现了一些黑色的螃蟹，看起来好可怕"/>
+      <!--玩家等级27级-->
+    </track>  
+    <track id="99" level="31" quest="海底杀手" info="击败黑铁蟹%(10055/20)" click="wl=深海之底,103.32,81.11,-0.81">
+      <act act="kill" id="10055" num="20"/>
+    </track>  
+    <track id="100" level="31" quest="海底杀手" info="击败黑铁蟹王%(10056/1)" click="wl=深海之底,97.07,91.64,-0.53">
+      <act act="kill" id="10056" num="1"/>
+    </track>         
+    <track id="101" level="31" quest="海底杀手" info="去找哈利" click="wl=深海之底,90.49,75.29,-0.70">
+      <act act="visit" npcid="143"/>
+      <act act="reward" id="565" npcid="143" text="那些贝壳好漂亮，能帮我采集些吗？我打算做一条贝壳项链给主人"/>
+      <!--玩家等级27级-->
+    </track>  
+    <track id="102" level="31" quest="采集贝壳" info="采集贝壳%(902/5)" click="wl=深海之底,82.54,105.04,-0.60">
+      <act act="collect" id="902" num="5"/>
+    </track>  
+    <track id="103" level="31" quest="采集贝壳" info="去找哈利" click="wl=深海之底,90.49,75.29,-0.70">
+      <act act="visit" npcid="143"/>
+      <act act="reward" id="566" npcid="143" text="谢谢，那边有个小女孩，好像遇到一些麻烦"/>
+      <!--玩家等级27级-->
+    </track>  
+    <track id="104" level="31" quest="流浪女孩" info="去找小女孩" click="wl=深海之底,64.27,97.50,-0.15">
+      <act act="visit" npcid="144" storyid="7"/>
+      <act act="reward" id="567" npcid="144" text="谢谢你，小心，那些变异人鱼发现我们了"/>
+      <!--玩家等级27级-->
+    </track>       
+    <track id="105" level="31" quest="鱼人部队" info="击败变异鱼人%(10057/20)" click="wl=深海之底,51.68,110.41,-0.81">
+      <act act="kill" id="10057" num="20"/>
+    </track>            
+    <track id="106" level="31" quest="鱼人部队" info="去找莎伦" click="wl=深海之底,64.27,97.50,-0.15">
+      <act act="visit" npcid="144"/>
+      <act act="reward" id="568" npcid="144" text="这下惊动了鱼人首领，对付它可有点麻烦，我来用部族的咒语来帮你！"/>
+      <act act="transfig" id="5"/>
+      <!--玩家等级27级-->
+    </track>       
+    <track id="107" level="31" quest="鱼人首领" info="击败变异鱼人首领%(10058/1)" click="wl=深海之底,46.94,124.05,-0.66">
+      <act act="kill" id="10058" num="1"/>
+    </track>  
+    <track id="108" level="31" quest="鱼人首领" info="去找莎伦" click="wl=深海之底,64.27,97.50,-0.15">
+      <act act="visit" npcid="144"/>
+      <act act="reward" id="569" npcid="144" text="你真厉害，像我们部族的女战士伊耶芙特一样，她也在跟怪物战斗呢"/>
+      <act act="transfig" id="0"/>
+      <!--玩家等级27级-->
+    </track>  
+    <track id="109" level="31" quest="共同作战" info="去找伊耶芙特" click="wl=深海之底,10.27,94.31,-0.41">
+      <act act="visit" npcid="145"/>
+      <act act="reward" id="570" npcid="145" text="多谢帮忙，那些美杜莎能放出闪电，一定得小心应付"/>
+      <!--玩家等级27级-->
+    </track>       
+    <track id="110" level="31" quest="收复家园" info="击败美杜莎%(10060/20)" click="wl=深海之底,23.24,118.18,-0.21">
+      <act act="kill" id="10060" num="20"/>
+    </track>            
+    <track id="111" level="31" quest="收复家园" info="去找伊耶芙特" click="wl=深海之底,10.27,94.31,-0.41">
+      <act act="visit" npcid="145"/>
+      <act act="reward" id="571" npcid="145" text="前面一阵黑雾，看来那个巨怪要出现了..."/>
+      <!--玩家等级27级-->
+    </track>       
+    <track id="112" level="31" quest="深海巨怪" info="击败所有海怪%(0/7)" click="wl=深海之底,33.04,46.01,0.16">
+      <act act="fuben" id="11" type="7" delay="0.5" continue="true"/>
+      <act act="talk" storyid="8" npcid="10018"/>     
+    </track>            
+    <track id="113" level="31" quest="深海巨怪" info="去找莎伦" click="wl=深海之底,64.27,97.50,-0.15">
+      <act act="visit" npcid="144"/>
+      <act act="reward" id="572" npcid="144" text="谢谢你帮我们夺回了家园，希望你能早日找到龙戒，消灭魔族"/>
+      <!--玩家等级27级-->
+    </track>      
+    <track id="114" level="31" quest="龙戒下落" info="去找马勒第兹" click="wl=星月湾,457.86,604.91,4.18">
+      <act act="visit" npcid="127"/>
+      <act act="reward" id="573" npcid="127" text="星月湾往北就是矮人居住的乌卡拉山脉，矮人和侏儒关系紧密，他可能会去那里，我的朋友泰特斯会帮助你"/>
+      <!--玩家等级27级-->
+    </track>      
+    <track id="115" level="35" chapter="4" chapName="矮人王国" chapPic="2-27-1" quest="矮人地界" info="去找泰特斯" click="wl=乌卡拉山脉,317.38,218.99,-14.25">
+      <act act="visit" npcid="146"/>
+      <act act="reward" id="574" npcid="146" text="矮人的脾气不太好，遇到那些守卫可要小心些"/>
+      <!--玩家等级27级-->
+    </track>      
+    <track id="116" level="35" quest="突破守卫" info="击败矮人守卫%(10022/20)" click="wl=乌卡拉山脉,304.02,233.66,-14.25">
+      <act act="kill" id="10022" num="20"/>
+    </track> 
+    <track id="117" level="35" quest="突破守卫" info="去找泰特斯" click="wl=乌卡拉山脉,317.38,218.99,-14.25">
+      <act act="visit" npcid="146"/>
+      <act act="reward" id="575" npcid="146" text="矮人长老布洛托威望很高，也许知道你要找的人，不过你应该先去石碑那了解一下矮人的习俗"/>
+      <!--玩家等级27级-->
+    </track>      
+    <track id="118" level="35" quest="了解矮人" info="阅读石碑上的文字" click="wl=乌卡拉山脉,296.69,185.50,-6.08">
+      <act act="progress" id="17" pos="296.69,185.50,-6.08" radius="0"/>  
+      <!--玩家等级27级-->
+    </track>         
+    <track id="119" level="35" quest="了解矮人" info="去找布洛托" click="wl=乌卡拉山脉,322.97,157.79,-6.38">
+      <act act="visit" npcid="150"/>
+      <act act="reward" id="576" npcid="150" text="想让我帮忙，必须要先闯过我们的火枪阵，看你有没有这个本事了"/>
+      <!--玩家等级27级-->
+    </track>      
+    <track id="120" level="35" quest="能力测试" info="击败矮人火枪手%(10023/20)" click="wl=乌卡拉山脉,322.92,176.91,-6.37">
+      <act act="kill" id="10023" num="20"/>
+    </track> 
+    <track id="121" level="35" quest="能力测试" info="去找布洛托" click="wl=乌卡拉山脉,322.97,157.79,-6.38">
+      <act act="visit" npcid="150"/>
+      <act act="reward" id="577" npcid="150" text="龙戒的事我们也听说了，统领科林有兴趣跟你聊聊"/>
+      <!--玩家等级27级-->
+    </track>          
+    <track id="122" level="35" quest="拜见统领" info="去找科林" click="wl=乌卡拉山脉,263.63,155.86,-1.49">
+      <act act="visit" npcid="148"/>
+      <act act="reward" id="578" npcid="148" text="魔族来袭，我们矮人一定跟他们战斗到底！不过我需要一头坐骑，能帮我驯服那些狮鹫吗？"/>
+      <!--玩家等级27级-->
+    </track> 
+    <track id="123" level="35" quest="驯服狮鹫" info="击败狮鹫%(10028/1)" click="wl=乌卡拉山脉,241.59,176.62,-1.38">
+      <act act="kill" id="10028" num="1"/>
+    </track> 
+    <track id="124" level="35" quest="驯服狮鹫" info="去找科林" click="wl=乌卡拉山脉,263.63,155.86,-1.49">
+      <act act="visit" npcid="148"/>
+      <act act="reward" id="579" npcid="148" text="多谢你，我们正在研制对付魔族的秘密武器，不过工程师鲁瑞克遇到了一点麻烦"/>
+      <!--玩家等级27级-->      
+    </track> 
+    <track id="125" level="38" quest="秘密武器" info="去帮助鲁瑞克" click="wl=乌卡拉山脉,203.44,201.13,-1.75">
+      <act act="visit" npcid="147"/>
+      <act act="reward" id="580" npcid="147" text="制造武器需要铁矿，不过我感觉矿坑那好像发生了什么事，能帮我去调查一下吗？"/>
+      <!--玩家等级27级-->
+    </track> 
+    <track id="126" level="38" quest="探查矿坑" info="去桥上探查矿坑" click="wl=乌卡拉山脉,245.03,201.06,-2.23">
+      <act act="progress" id="12" pos="245.03,201.06,-2.23" radius="0"/>  
+      <!--玩家等级27级-->
+    </track>   
+    <track id="127" level="38" quest="探查矿坑" info="去找鲁瑞克" click="wl=乌卡拉山脉,203.44,201.13,-1.75">
+      <act act="visit" npcid="147"/>
+      <act act="reward" id="581" npcid="147" text="果然是那些哥布林，他们总想不劳而获，去帮比佛对付他们吧"/>
+      <!--玩家等级27级-->
+    </track>     
+    <track id="128" level="38" quest="矿坑危机" info="去找比佛" click="wl=乌卡拉山脉,211.06,234.20,-24.24">
+      <act act="visit" npcid="151"/>
+      <act act="reward" id="582" npcid="151" text="那些哥布林强盗偷走了我们很多矿产，他们非常狡猾，真是让人头疼"/>
+      <!--玩家等级27级-->
+    </track>     
+    <track id="129" level="38" quest="驱除强盗" info="击败哥布林强盗%(10024/20)" click="wl=乌卡拉山脉,209.56,252.42,-24.33">
+      <act act="kill" id="10024" num="20"/>
+    </track> 
+    <track id="130" level="38" quest="驱除强盗" info="去找比佛" click="wl=乌卡拉山脉,211.06,234.20,-24.24">
+      <act act="visit" npcid="151"/>
+      <act act="reward" id="583" npcid="151" text="比强盗更难对付的是哥布林巫师，他们会施毒术，不少工人都中招了"/>
+      <!--玩家等级27级-->
+    </track>     
+    <track id="131" level="38" quest="邪恶巫师" info="击败哥布林巫师%(10025/20)" click="wl=乌卡拉山脉,183.15,245.53,-24.35">
+      <act act="kill" id="10025" num="20"/>
+    </track> 
+    <track id="132" level="38" quest="邪恶巫师" info="去找比佛" click="wl=乌卡拉山脉,211.06,234.20,-24.24">
+      <act act="visit" npcid="151"/>
+      <act act="reward" id="584" npcid="151" text="多谢，这下再也不担心他们的骚扰了，不过工人还在修养，能帮我采些铁矿送给鲁瑞克吗？"/>
+      <!--玩家等级27级-->
+    </track>   
+    <track id="133" level="38" quest="采集铁矿" info="采集铁矿%(907/3)" click="wl=乌卡拉山脉,160.16,233.14,-27.03">
+      <act act="collect" id="907" num="3"/>
+    </track>    
+    <track id="134" level="38" quest="采集铁矿" info="击败所有哥布林%(0/8)" click="wl=乌卡拉山脉,154.60,209.04,-24.35">
+      <act act="fuben" id="12" type="7" delay="0.5" continue="true"/>
+    </track>  
+    <track id="135" level="38" quest="采集铁矿" info="去找鲁瑞克" click="wl=乌卡拉山脉,203.44,201.13,-1.75">
+      <act act="visit" npcid="147"/>
+      <act act="reward" id="585" npcid="147" text="太好了，有了这些铁矿我们就可以制造更多的武器了！快告诉科林吧"/>
+      <!--玩家等级27级-->
+    </track> 
+    <track id="136" level="42" quest="武器图纸" info="去找科林" click="wl=乌卡拉山脉,263.63,155.86,-1.49">
+      <act act="visit" npcid="148" story="9"/>
+      <act act="reward" id="586" npcid="148" text="我已经派诺力前去寻找图纸了，有你的帮助一定能拿回来"/>
+      <!--玩家等级27级-->      
+    </track>              
+    <track id="137" level="42" quest="对抗巨魔" info="击败独眼幼猿%(0/10)" click="wl=乌卡拉山脉,197.74,156.93,1.68">
+      <act act="fuben" id="13" type="7" delay="0.5" continue="true"/>
+    </track>     
+    <track id="138" level="42" quest="对抗巨魔" info="去找诺力" click="wl=乌卡拉山脉,174.21,135.95,5.59">
+      <act act="visit" npcid="149"/>
+      <act act="reward" id="587" npcid="149" text="图纸应该在巨魔的要塞里，不过先得解决门口那些独眼巨魔"/>
+      <!--玩家等级27级-->      
+    </track>              
+    <track id="139" level="42" quest="独眼巨魔" info="击败独眼巨魔%(10026/20)" click="wl=乌卡拉山脉,156.06,155.69,6.70">
+      <act act="kill" id="10026" num="20"/>
+    </track>                   
+    <track id="140" level="42" quest="独眼巨魔" info="去找诺力" click="wl=乌卡拉山脉,174.21,135.95,5.59">
+      <act act="visit" npcid="149"/>
+      <act act="reward" id="588" npcid="149" text="现在要对付水晶巨魔了，他们的身体由水晶组成，坚固无比..."/>
+      <!--玩家等级27级-->      
+    </track>              
+    <track id="141" level="42" quest="水晶巨魔" info="击败水晶巨魔%(10027/20)" click="wl=乌卡拉山脉,115.98,169.81,11.58">
+      <act act="kill" id="10027" num="20"/>
+    </track>                   
+    <track id="142" level="42" quest="水晶巨魔" info="去找诺力" click="wl=乌卡拉山脉,174.21,135.95,5.59">
+      <act act="visit" npcid="149"/>
+      <act act="reward" id="589" npcid="149" text="图纸应该就藏在要塞里，不过里面可能会有埋伏，要多加小心"/>
+      <!--玩家等级27级-->      
+    </track>              
+    <track id="143" level="42" quest="夺回图纸" info="去要塞寻找图纸" click="wl=乌卡拉山脉,93.96,174.15,11.69">
+      <act act="progress" id="13" pos="93.96,174.15,11.69" radius="0"/>  
+      <!--玩家等级27级-->
+    </track>    
+    <track id="144" level="42" quest="夺回图纸" info="击败巨魔之王%(0/1)" click="wl=乌卡拉山脉,96.45,169.79,11.77">
+      <act act="fuben" id="14" type="7" delay="0.5" continue="true"/>
+    </track>  
+    <track id="145" level="42" quest="夺回图纸" info="去找诺力" click="wl=乌卡拉山脉,174.21,135.95,5.59">
+      <act act="visit" npcid="149"/>
+      <act act="reward" id="590" npcid="149" text="终于拿回图纸了，我这就去交给鲁瑞克，你快去告诉科林吧"/>
+      <!--玩家等级27级-->      
+    </track> 
+    <track id="146" level="42" quest="大功告成" info="去找科林" click="wl=乌卡拉山脉,263.63,155.86,-1.49">
+      <act act="visit" npcid="148"/>
+      <act act="reward" id="591" npcid="148" text="多谢，我的部下打探到，你要找的侏儒可能前往勇气峡谷了"/>
+      <!--玩家等级27级-->      
+    </track>   
+    <track id="147" level="50" quest="拜访金矮人" info="去勇气峡谷找欧音" click="wl=勇气峡谷,208.52,68.39,2.81">
+      <act act="visit" npcid="159"/>
+      <act act="reward" id="592" npcid="159" text="自从那个侏儒朱克来到勇气峡谷之后，一切都就开始改变了..."/>
+      <!--玩家等级27级-->      
+    </track>               
+    <track id="148" level="50" quest="峡谷之变" info="击败金矮人战士%(10089/20)" click="wl=勇气峡谷,200.08,79.75,2.92">
+      <act act="kill" id="10089" num="20"/>
+    </track>     
+    <track id="149" level="50" quest="峡谷之变" info="去找欧音" click="wl=勇气峡谷,208.52,68.39,2.81">
+      <act act="visit" npcid="159"/>
+      <act act="reward" id="593" npcid="159" text="也许塔夫林长老更了解事情的真相，你去找他问问吧，不过要小心路上的沙虫"/>
+      <!--玩家等级27级-->      
+    </track>               
+    <track id="150" level="50" quest="沙虫出没" info="击败沙虫%(10090/20)" click="wl=勇气峡谷,175.43,93.32,3.10">
+      <act act="kill" id="10090" num="20"/>
+    </track>     
+    <track id="151" level="50" quest="沙虫出没" info="去找长老塔夫林" click="wl=勇气峡谷,157.14,109.04,3.28">
+      <act act="visit" npcid="160"/>
+      <act act="reward" id="594" npcid="160" text="那天首领戈尔召见了侏儒朱克之后，就完全变了一个人，你还是去找那个侏儒调查一下吧"/>
+      <!--玩家等级27级-->      
+    </track>               
+    <track id="152" level="50" quest="侏儒的报复" info="去找侏儒朱克" click="wl=勇气峡谷,142.61,65.85,5.57">
+      <act act="visit" npcid="161" storyid="15"/>
+      <act act="reward" id="595" npcid="161" text="那得先制服那些矮人工程师们"/>
+      <!--玩家等级27级-->      
+    </track>     
+    <track id="153" level="50" quest="秘密计划" info="击败矮人工程师%(10091/20)" click="wl=勇气峡谷,136.63,88.33,5.71">
+      <act act="kill" id="10091" num="20"/>
+    </track>        
+    <track id="154" level="50" quest="秘密计划" info="去找朱克" click="wl=勇气峡谷,142.61,65.85,5.57">
+      <act act="visit" npcid="161"/>
+      <act act="reward" id="596" npcid="161" text="那些大炮就藏在峡谷边上，快去摧毁它们吧"/>
+      <!--玩家等级27级-->      
+    </track>     
+    <track id="155" level="50" quest="摧毁大炮" info="放火烧毁大炮" click="wl=勇气峡谷,114.90,63.66,5.84">
+        <act act="progress" id="3" pos="114.90,63.66,5.84" radius="0"/>
+        <act act="effect" res="4,1,26" npcid="0" pos="114.90,60.66,5.84" dur="15" scale="3"/> 
+        <act act="delay" seconds="1"/>
+    </track>      
+    <track id="156" level="50" quest="摧毁大炮" info="去找朱克" click="wl=勇气峡谷,142.61,65.85,5.57">
+      <act act="visit" npcid="161"/>
+      <act act="reward" id="597" npcid="161" text="哈哈，这就是欺骗我的代价！"/>
+      <!--玩家等级27级-->      
+    </track>     
+    <track id="157" level="50" quest="突破防线" info="击败金矮人长老%(10092/20)" click="wl=勇气峡谷,71.47,90.06,5.86">
+      <act act="kill" id="10092" num="20"/>
+    </track>      
+    <track id="158" level="50" quest="突破防线" info="去找首领戈尔" click="wl=勇气峡谷,49.53,111.83,5.80">
+      <act act="visit" npcid="162"/>
+      <act act="reward" id="598" npcid="162" text="想让我放弃攻打科林的计划？那得看你有没有这个本事！"/>
+      <!--玩家等级27级-->      
+    </track>     
+    <track id="159" level="50" quest="魔化首领" info="击败戈尔%(0/1)" click="wl=勇气峡谷,53.29,111.58,5.77">
+      <act act="fuben" id="21" type="7" delay="0.5" continue="true"/>
+    </track>      
+    <track id="160" level="50" quest="魔化首领" info="去找首领戈尔" click="wl=勇气峡谷,49.53,111.83,5.80">
+      <act act="visit" npcid="162"/>
+      <act act="reward" id="599" npcid="162" text="龙戒已被一个黑暗精灵偷走了，那些黑暗精灵就生活在古精灵之地"/>
+      <!--玩家等级27级-->      
+    </track>     
+    <track id="161" level="60" quest="古老森林" info="去找法师费恩" click="wl=古精灵之地,321.35,260.02,-0.15">
+      <act act="visit" npcid="163" storyid="16"/>
+      <!--玩家等级27级-->      
+    </track>       
+  </line>
+  <!--
+line    id,任务类型编号    name：任务类型名   level：等级限制 reward: 总的奖励； perDiamond:一键完成每个子任务的钻石花费 
+
+track   id：任务步骤编号   level：等级段，玩家满足此等级段才会随机到该任务   quest：任务名    info：任务追踪内容   click：点击任务追踪后触发的操作（wl代表寻路：地图名：npcid：x坐标：z坐标）  auto：自动执行该追踪
+
+act     所有act都共同用于的属性：
+             immediate: 是否马上执行act（而不用先执行track里的click），默认false
+		当前的可用act如下：	 
+        visit：访问任务       npcid：目标npcid     storyid：剧情编号   giveGuard: 访问当前npc时是否需要交镖（需要交彪填1，不需要填0或者不填）； scene：场景id
+        kill：杀怪任务        id：怪物id      num：怪物数量
+        directReward：直接给奖励，不弹界面        exp：经验     gold：金币		
+
+-->
+  <line id="2" name="阵营任务" level="19" autoType="1" reward="701" perDiamond="5" exp="10000" gold="2400"  autoTransf="1">
+    <track id="1" level="46,0" quest="拜访老友" info="拜访安娜" click="wl=主城,210.97,108.68,7.21" auto="1">
+      <act act="visit" npcid="101" storyid="501"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="2" level="46,0" quest="拜访老友" info="拜访兰斯中尉" click="wl=主城,212.72,188.85,5.22" auto="1">
+      <act act="visit" npcid="102" storyid="502"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="3" level="46,0" quest="拜访老友" info="拜访海泽尔" click="wl=主城,379.47,322.94,-8.76" auto="1">
+      <act act="visit" npcid="107" storyid="503"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="4" level="46,0" quest="拜访老友" info="拜访铁匠米利亚姆" click="wl=主城,264.70,102.25,7.62" auto="1">
+      <act act="visit" npcid="106" storyid="504"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="5" level="46,0" quest="拜访老友" info="拜访牧师米凯拉" click="wl=主城,347.32,202.84,-0.29" auto="1">
+      <act act="visit" npcid="109" storyid="505"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="6" level="46,0" quest="拜访老友" info="拜访锡德里克将军" click="wl=主城,145.53,287.85,-1.67" auto="1">
+      <act act="visit" npcid="110" storyid="506"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="7" level="46,0" quest="拜访老友" info="拜访训练师" click="wl=主城,162.90,114.11,7.67" auto="1">
+      <act act="visit" npcid="103" storyid="507"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="8" level="16,25" quest="拜访老友" info="拜访温士顿" click="wl=星月湾,616.72,582.67,-2.42" auto="1">
+      <act act="visit" npcid="113" storyid="508"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="9" level="16,25" quest="拜访老友" info="拜访罗拉" click="wl=星月湾,601.21,564.33,-2.29" auto="1">
+      <act act="visit" npcid="124" storyid="509"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="10" level="16,25" quest="拜访老友" info="拜访格里格" click="wl=星月湾,584.45,586.82,-2.05" auto="1">
+      <act act="visit" npcid="123" storyid="510"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="11" level="16,25" quest="拜访老友" info="拜访狄克" click="wl=星月湾,522.51,524.15,-1.23" auto="1">
+      <act act="visit" npcid="114" storyid="511"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>    
+    <track id="12" level="16,25" quest="拜访老友" info="拜访希尔达" click="wl=星月湾,533.64,490.28,5.73" auto="1">
+      <act act="visit" npcid="115" storyid="512"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>    
+    <track id="13" level="16,25" quest="拜访老友" info="拜访艾伯纳" click="wl=星月湾,529.58,444.79,7.83" auto="1">
+      <act act="visit" npcid="118" storyid="513"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>    
+    
+    <!--track id="11" level="10,25" quest="击退魔族" info="击败野狼%(10001/20)" click="wl=主城,48.19,168.05,-0.02" auto="1">
+      <act act="kill" id="10001" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="12" level="10,25" quest="击退魔族" info="击败花精%(10002/20)" click="wl=主城,67.90,237.25,0.00" auto="1">
+      <act act="kill" id="10002" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="13" level="10,25" quest="击退魔族" info="击败熊兵%(10003/20)" click="wl=主城,109.20,223.20,0.00" auto="1">
+      <act act="kill" id="10003" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="14" level="10,25" quest="击退魔族" info="击败狗头人%(10004/20)" click="wl=主城,171.80,225.30,-0.04" auto="1">
+      <act act="kill" id="10004" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="15" level="10,25" quest="击退魔族" info="击败巨石怪%(10005/20)" click="wl=主城,220.90,222.80,-0.04" auto="1">
+      <act act="kill" id="10005" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="16" level="10,25" quest="击退魔族" info="击败龙人%(10006/20)" click="wl=主城,237.05,77.08,-0.04" auto="1">
+      <act act="kill" id="10006" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="17" level="10,25" quest="击退魔族" info="击败龙人法师%(10007/20)" click="wl=主城,237.10,72.40,-0.04" auto="1">
+      <act act="kill" id="10007" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="18" level="10,25" quest="击退魔族" info="击败精英龙人%(10008/5)" click="wl=主城,75.76,48.95,0.00" auto="1">
+      <act act="kill" id="10008" num="5"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="19" level="10,25" quest="击退魔族" info="击败哥布林巫师%(10025/20)" click="wl=主城,122.00,45.30,0.00" auto="1">
+      <act act="kill" id="10025" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track-->
+    <track id="14" level="16,25" quest="击退魔族" info="击败海盗%(10011/20)" click="wl=星月湾,585.80,612.20,-2.41" auto="1">
+      <act act="kill" id="10011" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="15" level="16,25" quest="击退魔族" info="击败巨钳蟹%(10014/20)" click="wl=星月湾,496.20,515.10,-0.92" auto="1">
+      <act act="kill" id="10014" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="16" level="16,25" quest="击退魔族" info="击败海盗杀手%(10038/20)" click="wl=星月湾,542.85,510.69,2.37" auto="1">
+      <act act="kill" id="10038" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="17" level="16,25" quest="击退魔族" info="击败鲨鱼%(10016/20)" click="wl=星月湾,521.61,577.37,-6.41" auto="1">
+      <act act="kill" id="10016" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="18" level="16,25" quest="击退魔族" info="击败娜迦海妖%(10017/1)" click="wl=星月湾,555.35,433.07,6.41" auto="1">
+      <act act="kill" id="10017" num="1"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>
+    <track id="19" level="16,25" quest="击退魔族" info="击败魔鱼怪%(10015/20)" click="wl=星月湾,467.53,458.07,-3.38" auto="1">
+      <act act="kill" id="10015" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>    
+    <track id="20" level="26,30" quest="拜访老友" info="拜访莫雷" click="wl=幽灵湾,563.22,575.53,6.21" auto="1">
+      <act act="visit" npcid="128" storyid="514"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>      
+    <track id="21" level="26,30" quest="拜访老友" info="拜访佛吉尔" click="wl=幽灵湾,487.06,497.15,3.04" auto="1">
+      <act act="visit" npcid="129" storyid="515"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>      
+    <track id="22" level="26,30" quest="拜访老友" info="拜访玛西亚" click="wl=幽灵湾,446.18,392.89,2.64" auto="1">
+      <act act="visit" npcid="130" storyid="516"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>      
+    <track id="23" level="26,30" quest="击退魔族" info="击败魔化美人鱼%(10012/20)" click="wl=幽灵湾,525.04,631.05,-7.79" auto="1">
+      <act act="kill" id="10012" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>     
+    <track id="24" level="26,30" quest="击退魔族" info="击败水妖%(10040/20)" click="wl=幽灵湾,478.66,505.54,2.11" auto="1">
+      <act act="kill" id="10040" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>     
+    <track id="25" level="26,30" quest="击退魔族" info="击败影魂%(10013/20)" click="wl=幽灵湾,457.23,505.74,2.96" auto="1">
+      <act act="kill" id="10013" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track> 
+    <track id="26" level="31,35" quest="拜访老友" info="拜访哈利" click="wl=深海之底,90.49,75.29,-0.70" auto="1">
+      <act act="visit" npcid="143" storyid="517"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>      
+    <track id="27" level="31,35" quest="拜访老友" info="拜访莎伦" click="wl=深海之底,64.27,97.50,-0.15" auto="1">
+      <act act="visit" npcid="144" storyid="518"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>      
+    <track id="28" level="31,35" quest="拜访老友" info="拜访伊耶芙特" click="wl=深海之底,10.27,94.31,-0.41" auto="1">
+      <act act="visit" npcid="145" storyid="519"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>      
+    <track id="29" level="31,35" quest="击退魔族" info="击败黑铁蟹%(10055/20)" click="wl=深海之底,103.32,81.11,-0.81" auto="1">
+      <act act="kill" id="10055" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>      
+    <track id="30" level="31,35" quest="击退魔族" info="击败黑铁蟹王%(10056/1)" click="wl=深海之底,97.07,91.64,-0.53" auto="1">
+      <act act="kill" id="10056" num="1"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>      
+    <track id="31" level="31,35" quest="击退魔族" info="击败变异鱼人%(10057/20)" click="wl=深海之底,51.68,110.41,-0.81" auto="1">
+      <act act="kill" id="10057" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>      
+    <track id="32" level="31,35" quest="击退魔族" info="击败黑铁蟹%(10055/20)" click="wl=深海之底,103.32,81.11,-0.81" auto="1">
+      <act act="kill" id="10055" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>      
+    <track id="33" level="31,35" quest="击退魔族" info="击败变异鱼人首领%(10058/1)" click="wl=深海之底,46.94,124.05,-0.66" auto="1">
+      <act act="kill" id="10058" num="1"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>      
+    <track id="34" level="31,35" quest="击退魔族" info="击败美杜莎%(10060/20)" click="wl=深海之底,23.24,118.18,-0.21" auto="1">
+      <act act="kill" id="10060" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>      
+    <track id="35" level="36,45" quest="拜访老友" info="拜访泰特斯" click="wl=乌卡拉山脉,317.38,218.99,-14.25" auto="1">
+      <act act="visit" npcid="146" storyid="520"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track> 
+    <track id="36" level="36,45" quest="拜访老友" info="拜访布洛托" click="wl=乌卡拉山脉,322.97,157.79,-6.38" auto="1">
+      <act act="visit" npcid="150" storyid="521"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track> 
+    <track id="37" level="36,45" quest="拜访老友" info="拜访科林" click="wl=乌卡拉山脉,263.63,155.86,-1.49" auto="1">
+      <act act="visit" npcid="148" storyid="522"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track> 
+    <track id="38" level="36,45" quest="拜访老友" info="拜访鲁瑞克" click="wl=乌卡拉山脉,203.44,201.13,-1.75" auto="1">
+      <act act="visit" npcid="147" storyid="523"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track> 
+    <track id="39" level="36,45" quest="拜访老友" info="拜访比佛" click="wl=乌卡拉山脉,211.06,234.20,-24.24" auto="1">
+      <act act="visit" npcid="151" storyid="524"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track> 
+    <track id="40" level="36,45" quest="拜访老友" info="拜访诺力" click="wl=乌卡拉山脉,174.21,135.95,5.59" auto="1">
+      <act act="visit" npcid="149" storyid="525"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track> 
+    <track id="41" level="36,45" quest="击退魔族" info="击败矮人守卫%(10022/20)" click="wl=乌卡拉山脉,304.02,233.66,-14.25" auto="1">
+      <act act="kill" id="10022" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>    
+    <track id="42" level="36,45" quest="击退魔族" info="击败矮人火枪手%(10023/20)" click="wl=乌卡拉山脉,322.92,176.91,-6.37" auto="1">
+      <act act="kill" id="10023" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>    
+    <track id="43" level="36,45" quest="击退魔族" info="击败哥布林强盗%(10024/20)" click="wl=乌卡拉山脉,209.56,252.42,-24.33" auto="1">
+      <act act="kill" id="10024" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>    
+    <track id="44" level="36,45" quest="击退魔族" info="击败哥布林巫师%(10025/20)" click="wl=乌卡拉山脉,183.15,245.53,-24.35" auto="1">
+      <act act="kill" id="10025" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>    
+    <track id="45" level="36,45" quest="击退魔族" info="击败独眼巨魔%(10026/20)" click="wl=乌卡拉山脉,156.06,155.69,6.70" auto="1">
+      <act act="kill" id="10026" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>    
+    <track id="46" level="36,45" quest="击退魔族" info="击败水晶巨魔%(10027/20)" click="wl=乌卡拉山脉,115.98,169.81,11.58" auto="1">
+      <act act="kill" id="10027" num="20"/>
+      <act act="directReward" exp="10000" gold="2400"/>
+    </track>                   
+  </line>
+
+  <line id="3" name="" level="20">
+    <track id="1" level="20,200" quest="护送物资" info="将物资车送到波特处" click="wl=主城,144.87,245.43,5.02" auto="1">
+      <act act="addGuard" id="20002" type="2"/>
+      <act act="visit" npcid="120" scene="9001" storyid="601" immediate="true"/>
+    </track>
+    <track id="2" level="20,200" quest="护送物资" info="将物资车送到菲尔处" click="wl=主城,239.44,321.31,-2.70" auto="1">
+      <act act="visit" npcid="121" scene="9001" storyid="601" immediate="true"/>
+    </track>
+    <!--track id="3" level="20,29" quest="护送物资" info="将物资车送到费奇处" click="wl=主城,344.87,259.86,-4.36" auto="1">
+      <act act="visit" npcid="122" scene="9001" storyid="601" immediate="true"/>
+    </track-->   
+    <track id="3" level="30,200" country="1" quest="护送物资" info="将物资车送到巴特勒处" click="wl=边境,142.01,100.01,0.02" auto="1">
+      <act act="visit" npcid="132" scene="7" giveGuard="1" immediate="true"/>
+      <act act="reward" id="0" npcid="132"/>
+      <act act="endLine"/>
+    </track> 
+    <track id="4" level="30,200" country="2" quest="护送物资" info="将物资车送到克拉克处" click="wl=边境,73.46,147.14,0.02" auto="1">
+      <act act="visit" npcid="133" scene="7" giveGuard="1" immediate="true"/>
+      <act act="reward" id="0" npcid="133"/>
+      <act act="endLine"/>
+    </track>     
+    <track id="5" level="20,29" quest="护送物资" info="将物资车送到杰拉尔德处" click="wl=主城,344.87,259.86,-4.36" auto="1">
+      <act act="visit" npcid="116" scene="9001" giveGuard="1" immediate="true"/>
+      <act act="reward" id="0" npcid="116"/>
+      <act act="endLine"/>
+    </track>           
+  </line>
+  
+  <line id="4" name="悬赏任务" level="10"  autoTransf="1">
+    <track id="1" level="20,30" quest="击败海盗" info="击败海盗%(10011/25)" click="wl=星月湾,585.80,612.20,-2.41" auto="1">
+      <act act="kill" id="10011" num="25"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track>
+    <track id="2" level="20,30" quest="击败巨钳蟹" info="击败巨钳蟹%(10014/25)" click="wl=星月湾,496.20,515.10,-0.92" auto="1">
+      <act act="kill" id="10014" num="25"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track>
+    <track id="3" level="20,30" quest="击败娜迦海妖" info="击败娜迦海妖%(10017/3)" click="wl=星月湾,555.35,433.07,6.41" auto="1">
+      <act act="kill" id="10017" num="3"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track>
+    <track id="4" level="20,30" quest="击败鲨鱼" info="击败鲨鱼%(10016/25)" click="wl=星月湾,521.61,577.37,-6.41" auto="1">
+      <act act="kill" id="10016" num="25"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track>
+    <track id="5" level="20,30" quest="击败魔鱼怪" info="击败魔鱼怪%(10015/25)" click="wl=星月湾,467.53,458.07,-3.38" auto="1">
+      <act act="kill" id="10015" num="25"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track>
+    <track id="6" level="20,30" quest="击败海盗杀手" info="击败海盗杀手%(10038/25)" click="wl=星月湾,542.85,510.69,2.37" auto="1">
+      <act act="kill" id="10038" num="25"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track>
+    <track id="7" level="20,30" quest="击败飞龙" info="击败飞龙%(10037/1)" click="wl=星月湾,641.80,558.00,-2.37" auto="1">
+      <act act="kill" id="10037" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track>
+    <track id="8" level="20,30" quest="击败海盗" info="击败海盗%(1800/1)" click="wl=星月湾,579.66,447.70,8.64" auto="1">
+      <act act="kill" id="1800" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track>
+    <track id="9" level="20,30" quest="击败石魔" info="击败石魔%(1801/1)" click="wl=星月湾,526.09,422.09,6.85" auto="1">
+      <act act="kill" id="1801" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track>
+    <track id="10" level="20,30" quest="击败巨熊" info="击败巨熊%(1802/1)" click="wl=星月湾,520.68,472.88,11.36" auto="1">
+      <act act="kill" id="1802" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track> 
+    <track id="11" level="31,40" quest="击败邪恶巫师" info="击败邪恶巫师%(1803/1)" click="wl=边境,26.37,107.84,0.02" auto="1">
+      <act act="kill" id="1803" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track> 
+    <track id="12" level="31,40" quest="击败狗头怪" info="击败狗头怪%(1804/1)" click="wl=边境,135.62,29.37,0.12" auto="1">
+      <act act="kill" id="1804" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track> 
+    <track id="13" level="41,50" quest="击败巨岩魔" info="击败巨岩魔%(1806/1)" click="wl=边境,51.67,68.67,0.07" auto="1">
+      <act act="kill" id="1806" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track> 
+    <track id="14" level="41,50" quest="击败狂暴矮人" info="击败狂暴矮人%(1807/1)" click="wl=边境,80.28,56.02,0.03" auto="1">
+      <act act="kill" id="1807" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track> 
+    <track id="15" level="51,60" quest="击败致命蜂" info="击败致命蜂%(1809/1)" click="wl=边境,115.33,74.70,0.03" auto="1">
+      <act act="kill" id="1809" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track> 
+    <track id="16" level="51,60" quest="击败地狱魔虫" info="击败地狱魔虫%(1810/1)" click="wl=边境,75.90,113.60,0.03" auto="1">
+      <act act="kill" id="1810" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track> 
+    <track id="17" level="61,70" quest="击败食人花" info="击败食人花%(1812/1)" click="wl=边境,141.09,77.69,0.03" auto="1">
+      <act act="kill" id="1812" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track>  
+    <track id="18" level="61,70" quest="击败疾风龙" info="击败疾风龙%(1813/1)" click="wl=边境,52.95,107.23,0.15" auto="1">
+      <act act="kill" id="1813" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track>  
+    <track id="19" level="71,80" quest="击败红飞龙" info="击败红飞龙%(1815/1)" click="wl=边境,50.96,133.17,0.07" auto="1">
+      <act act="kill" id="1815" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track>  
+    <track id="20" level="71,80" quest="击败蝠鹰" info="击败蝠鹰%(1816/1)" click="wl=边境,114.05,104.86,0.02" auto="1">
+      <act act="kill" id="1816" num="1"/>
+      <act act="xsReward" totalComplete="true" immediate="true"/>
+    </track>                                                             
+  </line>
+
+  <!-- 关于家族护送任务，需要将addGuard，visit类型的act分开，用2条track-->
+  <line id="5" name="家族护送" level="20"  visible="false">
+    <track id="1" level="20" quest="护送圣龙" info="将圣龙送到波特处" click="wl=主城,144.87,245.43,5.02" auto="0">
+      <act act="addGuard" id="20006" type="2"/>
+    </track>
+    <track id="2" level="20" quest="护送圣龙" info="将圣龙送到波特处" click="wl=主城,144.87,245.43,5.02" auto="1">
+      <act act="visit" npcid="120" scene="9001" storyid="10001" immediate="true"/>
+    </track>
+    <track id="3" level="20" quest="护送圣龙" info="将圣龙送到菲尔处" click="wl=主城,239.44,321.31,-2.70" auto="1">
+      <act act="visit" npcid="121" scene="9001" storyid="10002" immediate="true" changeEgg="1"/>
+    </track>
+    <!--track id="4" level="20" quest="护送圣龙" info="将圣龙送到费奇处" click="wl=主城,344.87,259.86,-4.36" auto="1">
+      <act act="visit" npcid="122" scene="9001" storyid="10003" immediate="true"/>
+    </track-->
+<!--<track id="5" level="20" quest="护送圣龙" info="将圣龙送到杰拉尔德处" click="wl=主城,310.47,155.10,6.38" auto="1">
+      <act act="visit" npcid="116" scene="9001" storyid="10004" immediate="true" changeEgg="1" giveGuard="1"/>
+      <act act="reward" id="0" npcid="116"/>
+    </track>-->
+    <track id="4" level="20" country="1" quest="护送圣龙" info="将圣龙送到巴特勒处" click="wl=边境,142.01,100.01,0.02" auto="1">
+      <act act="visit" npcid="132" scene="7" storyid="10004" giveGuard="1" changeEgg="1" immediate="true"/>
+      <act act="reward" id="0" npcid="132"/>
+    </track> 
+    <track id="5" level="20" country="2" quest="护送圣龙" info="将圣龙送到克拉克处" click="wl=边境,73.46,147.14,0.02" auto="1">
+      <act act="visit" npcid="133" scene="7" storyid="10004" giveGuard="1" changeEgg="1" immediate="true"/>
+      <act act="reward" id="0" npcid="133"/>
+    </track>  
+  </line>
+  
+  <line id="6" name="家族环任务" level="19" reward="702" perDiamond="5" exp="10000" gold="2400">
+    <track id="1" level="10,0" quest="拜访老友" info="拜访安娜" click="wl=主城,210.97,108.68,7.21" auto="1">
+      <act act="visit" npcid="101" storyid="501"/>
+      <act act="directReward" exp="5000" gold="10000" septgx="0"/>
+    </track>
+    <track id="2" level="10,0" quest="拜访老友" info="拜访兰斯中尉" click="wl=主城,212.72,188.85,5.22" auto="1">
+      <act act="visit" npcid="102" storyid="502"/>
+      <act act="directReward" exp="5000" gold="10000" septgx="0"/>
+    </track>
+    <track id="3" level="10,0" quest="拜访老友" info="拜访海泽尔" click="wl=主城,379.47,322.94,-8.76" auto="1">
+      <act act="visit" npcid="107" storyid="503"/>
+      <act act="directReward" exp="5000" gold="10000" septgx="0"/>
+    </track>
+    <track id="4" level="10,0" quest="拜访老友" info="拜访铁匠米利亚姆" click="wl=主城,264.70,102.25,7.62" auto="1">
+      <act act="visit" npcid="106" storyid="504"/>
+      <act act="directReward" exp="5000" gold="10000" septgx="0"/>
+    </track>
+    <track id="5" level="10,0" quest="拜访老友" info="拜访牧师米凯拉" click="wl=主城,347.32,202.84,-0.29" auto="1">
+      <act act="visit" npcid="109" storyid="505"/>
+      <act act="directReward" exp="5000" gold="10000" septgx="0"/>
+    </track>
+    <track id="6" level="10,0" quest="拜访老友" info="拜访乔伊" click="wl=主城,254.07,142.58,7.62" auto="1">
+      <act act="visit" npcid="108" storyid="506"/>
+      <act act="directReward" exp="5000" gold="10000" septgx="0"/>
+    </track>
+    <track id="7" level="10,0" quest="拜访老友" info="拜访锡德里克将军" click="wl=主城,145.53,287.85,-1.67" auto="1">
+      <act act="visit" npcid="110" storyid="507"/>
+      <act act="directReward" exp="5000" gold="10000" septgx="0"/>
+    </track>
+    <track id="8" level="10,0" quest="拜访老友" info="拜访南希" click="wl=主城,309.10,199.67,5.95" auto="1">
+      <act act="visit" npcid="111" storyid="508"/>
+      <act act="directReward" exp="5000" gold="10000" septgx="0"/>
+    </track>
+    <track id="9" level="10,0" quest="拜访老友" info="拜访特雷西" click="wl=主城,193.37,257.93,3.57" auto="1">
+      <act act="visit" npcid="112" storyid="509"/>
+      <act act="directReward" exp="5000" gold="10000" septgx="0"/>
+    </track>
+</line>
+
+<line id="7" name="支" level="1" fromOpenZone="1" autoType="1" autoTransf="1">
+    <track id="1" level="22" openZoneDay="1" levelTip="丰厚奖励，极速成长" quest="国王密令任务" info="找兰斯中尉接任务" click="wl=主城,212.72,188.85,5.22" auto="1">
+        <act act="visit" npcid="102" storyid="701"/>
+    </track>
+    <track id="2" level="22" openZoneDay="1" quest="国王密令任务" info="去找温士顿" click="wl=星月湾,616.72,582.67,-2.42" auto="1">
+        <act act="visit" npcid="113"/>
+        <act act="reward" id="2001" npcid="113" text="你先去调查一下货船吧，不过要小心，海里有很多鲨鱼"/>        
+    </track>
+    <track id="3" level="22" openZoneDay="1" quest="国王密令任务" info="去海上调查货船" click="wl=星月湾,552.55,569.27,-6.41" auto="1">
+      <act act="progress" id="12" pos="552.55,569.27,-6.41" radius="0"/>  
+    </track>
+    <track id="4" level="22" openZoneDay="1" quest="国王密令任务" info="击败鲨鱼%(10016/15)" click="wl=星月湾,521.61,577.37,-6.41">
+      <act act="kill" id="10016" num="15"/>
+    </track> 
+    <track id="5" level="22" openZoneDay="1" quest="国王密令任务" info="去找赫尔曼" click="wl=星月湾,578.93,514.07,1.13" auto="1">
+        <act act="visit" npcid="157"/>
+        <act act="reward" id="2002" npcid="157" text="我怀疑货船是星月岛上的海盗所劫，这次非给他们点教训不可"/>        
+    </track>
+    <track id="6" level="22" openZoneDay="1" quest="国王密令任务" info="击败海盗杀手%(10038/20)" click="wl=星月湾,542.85,510.69,2.37">
+      <act act="kill" id="10038" num="20"/>
+      <act act="talk" storyid="702" npcid="10038"/>        
+    </track>     
+    <track id="7" level="22" openZoneDay="1" quest="国王密令任务" info="去找赫尔曼" click="wl=星月湾,578.93,514.07,1.13" auto="1">
+        <act act="visit" npcid="157"/>
+        <act act="reward" id="2003" npcid="157" text="我曾在附近发现一些形迹可疑的法师，不知道是不是与他们有关"/>        
+    </track>
+    <track id="8" level="22" openZoneDay="1" quest="国王密令任务" info="击败邪龙法师%(10079/20)" click="wl=星月湾,606.32,496.42,-0.37">
+      <act act="kill" id="10079" num="20"/>
+    </track>         
+    <track id="9" level="22" openZoneDay="1" quest="国王密令任务" info="去找赫尔曼" click="wl=星月湾,578.93,514.07,1.13" auto="1">
+        <act act="visit" npcid="157"/>
+        <act act="reward" id="2004" npcid="157" text="原来这些法师是邪龙法夫纳的部下，看来这次的事情没那么简单"/>        
+    </track>    
+    <track id="10" level="22" openZoneDay="1" quest="国王密令任务" info="击败法夫纳%(10080/1)" click="wl=星月湾,596.12,482.28,3.89">
+      <act act="kill" id="10080" num="1"/>
+    </track>         
+    <track id="11" level="22" openZoneDay="1" quest="国王密令任务" info="去找赫尔曼" click="wl=星月湾,578.93,514.07,1.13" auto="1">
+        <act act="visit" npcid="157"/>
+        <act act="reward" id="2005" npcid="157" text="多谢你击败了法夫纳，不过似乎背后还有更厉害的角色，我们得继续追查下去"/>        
+    </track>        
+    <track id="12" level="26" openZoneDay="1" levelTip="升至26级继续接取" quest="国王密令任务" info="去找赫尔曼" click="wl=星月湾,578.93,514.07,1.13" auto="1">
+        <act act="visit" npcid="157" storyid="703"/>
+    </track>        
+    <track id="13" level="26" openZoneDay="1" quest="国王密令任务" info="去找希尔达帮忙" click="wl=星月湾,533.64,490.28,5.73" auto="1">
+        <act act="visit" npcid="115"/>
+        <act act="reward" id="2006" npcid="115" text="放心，这件事交给我吧，但是最近岛上魔物泛滥，我担心还会受伤..."/>        
+    </track>        
+    <track id="14" level="26" openZoneDay="1" quest="国王密令任务" info="击败巨钳蟹%(10014/20)" click="wl=星月湾,496.20,515.10,-0.77">
+      <act act="kill" id="10014" num="20"/>
+    </track> 
+    <track id="15" level="26" openZoneDay="1" quest="国王密令任务" info="去找希尔达" click="wl=星月湾,533.64,490.28,5.73" auto="1">
+        <act act="visit" npcid="115"/>
+        <act act="reward" id="2007" npcid="115" text="我已经让师父帮忙寻找恶龙骑士了，不过他好像忙着对付那些娜迦海妖呢"/>        
+    </track>     
+    <track id="16" level="26" openZoneDay="1" quest="国王密令任务" info="击败娜迦海妖%(10017/2)" click="wl=星月湾,555.35,433.07,6.41">
+      <act act="kill" id="10017" num="2"/>
+    </track> 
+    <track id="17" level="26" openZoneDay="1" quest="国王密令任务" info="去找艾伯纳" click="wl=星月湾,529.58,444.79,7.83">
+        <act act="visit" npcid="118"/>
+        <act act="reward" id="2008" npcid="118" text="我们已发现了恶龙骑士的行踪，能否打败他就看你的本事了"/>        
+    </track>     
+    <track id="18" level="26" openZoneDay="1" quest="国王密令任务" info="击败恶龙骑士%(10081/1)" click="wl=星月湾,508.21,449.71,5.87">
+      <act act="kill" id="10081" num="1"/>
+    </track>         
+    <track id="19" level="26" openZoneDay="1" quest="国王密令任务" info="去找艾伯纳" click="wl=星月湾,529.58,444.79,7.83">
+        <act act="visit" npcid="118"/>
+        <act act="reward" id="2009" npcid="118" text="我们已经找到了被劫的货物，快去送给赫尔曼吧"/>    
+      <act act="addGuard" id="20008" type="1"/>             
+    </track>     
+    <track id="20" level="26" openZoneDay="1" quest="国王密令任务" info="去找赫尔曼" click="wl=星月湾,578.93,514.07,1.13" auto="1">
+      <act act="visit" npcid="157" scene="0" giveGuard="1" storyid="704" immediate="true"/>
+    </track>    
+    <track id="21" level="26" openZoneDay="1" quest="国王密令任务" info="去找兰斯中尉" click="wl=主城,212.72,188.85,5.22" auto="1">
+        <act act="visit" npcid="102"/>
+        <act act="reward" id="2010" npcid="102" text="多谢你的帮忙，这些奖励请收下吧"/>         
+    </track>  
+    <track id="22" level="29" openZoneDay="2" levelTip="升至29级继续接取" quest="国王密令任务二" info="找兰斯中尉接任务" click="wl=主城,212.72,188.85,5.22" auto="1">
+        <act act="visit" npcid="102" storyid="705"/>
+    </track>      
+    <track id="23" level="29" openZoneDay="2" quest="国王密令任务二" info="去帮助美人鱼" click="wl=星月湾,563.01,555.01,-6.20" auto="1">
+        <act act="visit" npcid="125"/>
+        <act act="reward" id="2011" npcid="125" text="幽灵湾有很多美人鱼被魔化了，能去救救他们吗？"/>        
+    </track>    
+    <track id="24" level="29" openZoneDay="2" quest="国王密令任务二" info="去找埃尔维斯" click="wl=幽灵湾,559.80,592.03,6.20" auto="1">
+        <act act="visit" npcid="158" storyid="706"/>
+    </track>     
+    <track id="25" level="29" openZoneDay="2" quest="国王密令任务二" info="采集幽冥花%(908/3)" click="wl=幽灵湾,588.55,602.55,6.20">
+      <act act="collect" id="908" num="3"/>
+    </track>    
+    <track id="26" level="29" openZoneDay="2" quest="国王密令任务二" info="去找埃尔维斯" click="wl=幽灵湾,559.80,592.03,6.20">
+        <act act="visit" npcid="158"/>
+        <act act="reward" id="2012" npcid="158" text="快去制服那些魔化的美人鱼吧"/>        
+    </track>     
+    <track id="27" level="29" openZoneDay="2" quest="国王密令任务二" info="击败魔化美人鱼%(10012/20)" click="wl=幽灵湾,525.04,631.05,-7.79">
+      <act act="kill" id="10012" num="20"/>
+    </track>      
+    <track id="28" level="29" openZoneDay="2" quest="国王密令任务二" info="去找埃尔维斯" click="wl=幽灵湾,559.80,592.03,6.20">
+        <act act="visit" npcid="158"/>
+        <act act="reward" id="2013" npcid="158" text="听说海里有一只巨鲸也被魔化了，它的体型极其庞大，对美人鱼会造成致命的威胁"/>        
+    </track> 
+    <track id="29" level="29" openZoneDay="2" quest="国王密令任务二" info="击败巨鲸%(10082/1)" click="wl=幽灵湾,551.27,656.91,-7.72">
+      <act act="kill" id="10082" num="1"/>
+    </track>    
+    <track id="30" level="29" openZoneDay="2" quest="国王密令任务二" info="去找埃尔维斯" click="wl=幽灵湾,559.80,592.03,6.20">
+        <act act="visit" npcid="158"/>
+        <act act="reward" id="2014" npcid="158" text="不错，现在幽灵湾平静了很多"/>        
+    </track> 
+    <track id="31" level="32" openZoneDay="2" levelTip="升至32级继续接取" quest="国王密令任务二" info="去找埃尔维斯" click="wl=幽灵湾,559.80,592.03,6.20" auto="1">
+        <act act="visit" npcid="158" storyid="707"/>
+    </track>                
+    <track id="32" level="32" openZoneDay="2" quest="国王密令任务二" info="去找佛吉尔" click="wl=幽灵湾,487.06,497.15,3.04">
+        <act act="visit" npcid="129"/>
+        <act act="reward" id="2015" npcid="129" text="那些死去的士兵变成的影魂越来越多，如果不及时控制，就会蔓延到大海之上"/>        
+    </track>     
+    <track id="33" level="32" openZoneDay="2" quest="国王密令任务二" info="击败影魂%(10013/20)" click="wl=幽灵湾,457.23,505.74,2.96">
+      <act act="kill" id="10013" num="20"/>
+    </track>
+    <track id="34" level="32" openZoneDay="2" quest="国王密令任务二" info="去找佛吉尔" click="wl=幽灵湾,487.06,497.15,3.04">
+        <act act="visit" npcid="129"/>
+        <act act="reward" id="2016" npcid="129" text="船上还有不少腐烂的生物，为了杜绝后患，得放火烧了他们才行"/>        
+    </track>          
+    <track id="35" level="32" openZoneDay="2" quest="国王密令任务二" info="去船上放火" click="wl=幽灵湾,453.38,507.87,2.98">
+        <act act="progress" id="3" pos="453.38,507.87,2.98" radius="0"/>
+        <act act="effect" res="4,1,26" npcid="0" pos="451.61,509.22,2.98" dur="15" scale="3"/> 
+        <act act="delay" seconds="1"/>
+    </track>    
+    <track id="36" level="32" openZoneDay="2" quest="国王密令任务二" info="去找佛吉尔" click="wl=幽灵湾,487.06,497.15,3.04">
+        <act act="visit" npcid="129"/>
+        <act act="reward" id="2017" npcid="129" text="这下应该万无一失了，去告诉埃尔维斯吧"/>        
+    </track>      
+    <track id="37" level="32" openZoneDay="2" quest="国王密令任务二" info="去找埃尔维斯" click="wl=幽灵湾,559.80,592.03,6.20" auto="1">
+        <act act="visit" npcid="158" storyid="708"/>
+    </track>           
+    <track id="38" level="32" openZoneDay="2" quest="国王密令任务二" info="去找兰斯中尉" click="wl=主城,212.72,188.85,5.22" auto="1">
+        <act act="visit" npcid="102"/>
+        <act act="reward" id="2018" npcid="102" text="多谢你的帮忙，这些奖励请收下吧"/>         
+    </track>  
+    <track id="39" level="34" openZoneDay="3" levelTip="升至34级继续接取" quest="国王密令任务三" info="找兰斯中尉接任务" click="wl=主城,212.72,188.85,5.22" auto="1">
+        <act act="visit" npcid="102" storyid="705"/>
+    </track>      
+    <track id="40" level="34" openZoneDay="3" quest="国王密令任务三" info="去帮助美人鱼" click="wl=星月湾,563.01,555.01,-6.20" auto="1">
+        <act act="visit" npcid="125"/>
+        <act act="reward" id="2011" npcid="125" text="幽灵湾有很多美人鱼被魔化了，能去救救他们吗？"/>        
+    </track>    
+    <track id="41" level="34" openZoneDay="3" quest="国王密令任务三" info="去找埃尔维斯" click="wl=幽灵湾,559.80,592.03,6.20" auto="1">
+        <act act="visit" npcid="158" storyid="706"/>
+    </track>     
+    <track id="42" level="34" openZoneDay="3" quest="国王密令任务三" info="采集幽冥花%(908/3)" click="wl=幽灵湾,588.55,602.55,6.20">
+      <act act="collect" id="908" num="3"/>
+    </track>    
+    <track id="43" level="34" openZoneDay="3" quest="国王密令任务三" info="去找埃尔维斯" click="wl=幽灵湾,559.80,592.03,6.20">
+        <act act="visit" npcid="158"/>
+        <act act="reward" id="2012" npcid="158" text="快去制服那些魔化的美人鱼吧"/>        
+    </track>     
+    <track id="44" level="34" openZoneDay="3" quest="国王密令任务三" info="击败魔化美人鱼%(10012/20)" click="wl=幽灵湾,525.04,631.05,-7.79">
+      <act act="kill" id="10012" num="20"/>
+    </track>      
+    <track id="45" level="34" openZoneDay="3" quest="国王密令任务三" info="去找埃尔维斯" click="wl=幽灵湾,559.80,592.03,6.20">
+        <act act="visit" npcid="158"/>
+        <act act="reward" id="2013" npcid="158" text="听说海里有一只巨鲸也被魔化了，它的体型极其庞大，对美人鱼会造成致命的威胁"/>        
+    </track> 
+    <track id="46" level="34" openZoneDay="3" quest="国王密令任务三" info="击败巨鲸%(10082/1)" click="wl=幽灵湾,551.27,656.91,-7.72">
+      <act act="kill" id="10082" num="1"/>
+    </track>    
+    <track id="47" level="34" openZoneDay="3" quest="国王密令任务三" info="去找埃尔维斯" click="wl=幽灵湾,559.80,592.03,6.20">
+        <act act="visit" npcid="158"/>
+        <act act="reward" id="2014" npcid="158" text="不错，现在幽灵湾平静了很多"/>        
+    </track> 
+    <track id="48" level="36" openZoneDay="3" levelTip="升至36级继续接取" quest="国王密令任务二" info="去找埃尔维斯" click="wl=幽灵湾,559.80,592.03,6.20" auto="1">
+        <act act="visit" npcid="158" storyid="707"/>
+    </track>                
+    <track id="49" level="36" openZoneDay="3" quest="国王密令任务三" info="去找佛吉尔" click="wl=幽灵湾,487.06,497.15,3.04">
+        <act act="visit" npcid="129"/>
+        <act act="reward" id="2015" npcid="129" text="那些死去的士兵变成的影魂越来越多，如果不及时控制，就会蔓延到大海之上"/>        
+    </track>     
+    <track id="50" level="36" openZoneDay="3" quest="国王密令任务三" info="击败影魂%(10013/20)" click="wl=幽灵湾,457.23,505.74,2.96">
+      <act act="kill" id="10013" num="20"/>
+    </track>
+    <track id="51" level="36" openZoneDay="3" quest="国王密令任务三" info="去找佛吉尔" click="wl=幽灵湾,487.06,497.15,3.04">
+        <act act="visit" npcid="129"/>
+        <act act="reward" id="2016" npcid="129" text="船上还有不少腐烂的生物，为了杜绝后患，得放火烧了他们才行"/>        
+    </track>          
+    <track id="52" level="36" openZoneDay="3" quest="国王密令任务三" info="去船上放火" click="wl=幽灵湾,453.38,507.87,2.98">
+        <act act="progress" id="3" pos="453.38,507.87,2.98" radius="0"/>
+        <act act="effect" res="4,1,26" npcid="0" pos="451.61,509.22,2.98" dur="15" scale="3"/> 
+        <act act="delay" seconds="1"/>
+    </track>    
+    <track id="53" level="36" openZoneDay="3" quest="国王密令任务三" info="去找佛吉尔" click="wl=幽灵湾,487.06,497.15,3.04">
+        <act act="visit" npcid="129"/>
+        <act act="reward" id="2017" npcid="129" text="这下应该万无一失了，去告诉埃尔维斯吧"/>        
+    </track>      
+    <track id="54" level="36" openZoneDay="3" quest="国王密令任务三" info="去找埃尔维斯" click="wl=幽灵湾,559.80,592.03,6.20" auto="1">
+        <act act="visit" npcid="158" storyid="708"/>
+    </track>           
+    <track id="55" level="36" openZoneDay="3" quest="国王密令任务三" info="去找兰斯中尉" click="wl=主城,212.72,188.85,5.22" auto="1">
+        <act act="visit" npcid="102"/>
+        <act act="reward" id="2018" npcid="102" text="多谢你的帮忙，这些奖励请收下吧"/>         
+    </track>         
+<!--    <track id="39" level="32" openZoneDay="2" quest="国王密令任务二" info="EquipBuild" click="wl=幽灵湾,559.80,592.03,6.20" auto="1">
+        <act act="luaAct" lua="EquipBuild" targetCount="1"/>
+    </track>           
+    <track id="40" level="32" openZoneDay="2" quest="国王密令任务二" info="EquipMake" click="wl=幽灵湾,559.80,592.03,6.20" auto="1">
+        <act act="luaAct" lua="EquipMake" targetCount="1"/>
+    </track>  -->         
+</line>  
+
+<line id="8" name="紧急" level="12" autoType="1" autoTransf="1">
+<!--10级任务保护物资车-->
+    <track id="1" level="12" quest="保护物资" info="保护前线战场物资" click="wl=主城,187.75,119.52,7.62" auto="1">
+        <act act="visit" npcid="156" storyid="801"/>
+<!--        <act act="progress" id="20"/>        
+        <act act="gomap" id="18" pos="1" rot="0.00,-0.71,0.00,0.71"/>-->
+    </track>  
+    <track id="2" level="12" country="1" quest="保护物资" info="击败10个敌人%(0/10)" click="wl=圣光前线,131.56,56.20,0.03" auto="1">
+      <act act="kill" id="10085,10086,10087" num="10"/>  
+    </track>
+    <track id="2" level="12" country="2" quest="保护物资" info="击败10个敌人%(0/10)" click="wl=荣耀前线,36.19,83.15,0.02" auto="1">
+      <act act="kill" id="10085,10086,10087" num="10"/>  
+    </track>    
+    <track id="3" level="12" quest="保护物资" info="找瓦妮莎交任务" click="wl=主城,187.75,119.52,7.62" auto="1">
+<!--        <act act="gomap" id="1005" pos="1" rot="0.00,-0.71,0.00,0.71" auto="0"/>-->
+        <act act="visit" npcid="156"/>
+        <act act="reward" id="2021" npcid="156" text="幸亏你及时击退了敌人，我们的物资才没有损失更多，这些奖励送给你"/>             
+    </track>
+    <track id="4" level="22" levelTip="22级可熔炼装备" quest="熔炼装备" info="学习熔炼装备" click="wl=主城,264.70,102.25,7.62" auto="1">
+        <act act="visit" npcid="106"/>
+        <act act="reward" id="2023" npcid="106" text="使用装备精华可以熔炼装备，这些装备精华送给你，快试试看吧"/>    
+    </track>                
+    <track id="5" level="22" quest="熔炼装备" info="熔炼一件装备" click="wl=主城,264.70,102.25,7.62" auto="1">
+        <act act="luaAct" lua="EquipBuild" targetCount="1" immediate="true"/>         
+    </track> 
+    <track id="6" level="22" quest="熔炼装备" info="找米利亚姆交任务" click="wl=主城,264.70,102.25,7.62" auto="1">
+        <act act="visit" npcid="106"/>
+        <act act="reward" id="2024" npcid="106" text="不错，没用的装备也可以分解为装备精华，就可以熔炼新的装备了"/>    
+    </track> 
+    <track id="7" level="25" levelTip="25级前往战场杀敌" quest="战场御敌" info="去战场支援" click="wl=主城,187.75,119.52,7.62" auto="1">
+        <act act="visit" npcid="156" storyid="802"/>
+    </track>
+    <track id="8" level="25" country="1" quest="战场御敌" info="在战场击败敌人%(0/20)" click="wl=雪岭战场,174.42,147.69,0.84" transfer="1">
+      <act act="kill" id="10085,10086,10087,0" num="20"/>  
+    </track>
+    <track id="8" level="25" country="2" quest="战场御敌" info="在战场击败敌人%(0/20)" click="wl=雪岭战场,174.30,129.02,0.99" transfer="1">
+      <act act="kill" id="10085,10086,10087,0" num="20"/>  
+    </track>    
+    <track id="9" level="25" quest="战场御敌" info="找瓦妮莎交任务" click="wl=主城,187.75,119.52,7.62" auto="1">
+        <act act="visit" npcid="156"/>
+        <act act="reward" id="2022" npcid="156" text="你为我军立下了汗马功劳，这些奖励送给你！"/>             
+    </track>                          
+    <track id="10" level="37" levelTip="37级可打造腰带戒指" quest="打造装备" info="学习打造装备" click="wl=主城,264.70,102.25,7.62" auto="1">
+        <act act="visit" npcid="106"/>
+        <act act="reward" id="2025" npcid="106" text="使用黑铁和原石可以打造腰带和戒指，这些材料送给你，快试试看吧"/>    
+    </track>                
+    <track id="11" level="37" quest="打造装备" info="打造一件装备" click="wl=主城,264.70,102.25,7.62" auto="1">
+        <act act="luaAct" lua="EquipMake" targetCount="1" immediate="true"/>       
+    </track>     
+    <track id="12" level="37" quest="打造装备" info="找米利亚姆交任务" click="wl=主城,264.70,102.25,7.62" auto="1">
+        <act act="visit" npcid="106"/>
+        <act act="reward" id="2026" npcid="106" text="不错，打造装备可以快速提升实力哦"/>    
+    </track>                       
+</line>  
+</config>

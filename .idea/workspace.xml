@@ -1,0 +1,1151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/protected/controllers/IndexController.php" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="95da123d-828d-4c43-b2aa-e6a9b1583e38" name="默认的" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/views/table/userLeave.php" afterPath="$PROJECT_DIR$/protected/views/table/userLeave.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/ToolsController.php" afterPath="$PROJECT_DIR$/protected/controllers/ToolsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/TableController.php" afterPath="$PROJECT_DIR$/protected/controllers/TableController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/controllers/PayController.php" afterPath="$PROJECT_DIR$/protected/controllers/PayController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/protected/components/Permission.php" afterPath="$PROJECT_DIR$/protected/components/Permission.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+    </list>
+    <ignored path="uea.iws" />
+    <ignored path=".idea/workspace.xml" />
+    <ignored path=".idea/dataSources.local.xml" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
+  <component name="CreatePatchCommitExecutor">
+    <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="FavoritesManager">
+    <favorites_list name="uea">
+      <favorite_root url="file://$PROJECT_DIR$/protected/messages/zh_tw/language.php" type="psiFile" klass="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
+    </favorites_list>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="UeaController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/protected/controllers/UeaController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.284689">
+              <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
+              <folding>
+                <marker date="1491796698444" expanded="true" signature="1030:1071" placeholder="select * fro..notice..." />
+                <marker date="1491796698444" expanded="true" signature="1932:2031" placeholder="insert into `sync_notice`..." />
+                <marker date="1491796698444" expanded="true" signature="2276:2325" placeholder="select * fro..sync_notice..." />
+                <marker date="1491796698444" expanded="true" signature="2760:2783" placeholder="select * fro..version..." />
+                <marker date="1491796698444" expanded="true" signature="3517:3592" placeholder="select * fro..zone..." />
+                <marker date="1491796698444" expanded="true" signature="4699:4751" placeholder="select * fro..zone_merge..." />
+                <marker date="1491796698444" expanded="true" signature="5161:5210" placeholder="select * fro..zone_merge..." />
+                <marker date="1491796698444" expanded="true" signature="5458:5526" placeholder="update `zone..." />
+                <marker date="1491796698444" expanded="true" signature="5654:5772" placeholder="insert into `zone_merge`..." />
+                <marker date="1491796698444" expanded="true" signature="5914:5963" placeholder="delete from ..." />
+                <marker date="1491796698444" expanded="true" signature="6029:6080" placeholder="select * fro..zone..." />
+                <marker date="1491796698444" expanded="true" signature="6114:6683" placeholder="update `zone..." />
+                <marker date="1491796698444" expanded="true" signature="7156:7204" placeholder="select * fro..zone_merge..." />
+                <marker date="1491796698444" expanded="true" signature="7519:7545" placeholder="delete from ..." />
+                <marker date="1491796698444" expanded="true" signature="8090:8203" placeholder="insert into `task`..." />
+                <marker date="1491796698444" expanded="true" signature="8690:8728" placeholder="delete from ..." />
+                <marker date="1491796698444" expanded="true" signature="9062:9131" placeholder="insert into `item`..." />
+                <marker date="1491796698444" expanded="true" signature="9603:9641" placeholder="delete from ..." />
+                <marker date="1491796698444" expanded="true" signature="9975:10042" placeholder="insert into `item`..." />
+                <marker date="1491796698444" expanded="true" signature="10386:10406" placeholder="select * fro..item..." />
+                <marker date="1491796698444" expanded="true" signature="10467:10492" placeholder="select * fro..item_pack..." />
+                <marker date="1491796698444" expanded="true" signature="13650:13693" placeholder="select * fro..version..." />
+                <marker date="1491796698444" expanded="true" signature="13877:13988" placeholder="select * fro..version..." />
+                <marker date="1491796698444" expanded="true" signature="14506:14572" placeholder="update `vers..." />
+                <marker date="1491796698444" expanded="true" signature="14634:14702" placeholder="update `vers..." />
+                <marker date="1491796698444" expanded="true" signature="14771:14812" placeholder="select * fro..version..." />
+                <marker date="1491796698444" expanded="true" signature="15087:15115" placeholder="select * fro..redirect_url..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ToolsController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/controllers/ToolsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-29.535715">
+              <caret line="129" column="69" selection-start-line="129" selection-start-column="69" selection-end-line="129" selection-end-column="69" />
+              <folding>
+                <marker date="1490323421000" expanded="true" signature="2172:2228" placeholder="select `char..chardata..." />
+                <marker date="1490323421000" expanded="true" signature="2392:2504" placeholder="select `deta..stat_char_active..." />
+                <marker date="1490323421000" expanded="true" signature="3803:3859" placeholder="select `char..chardata..." />
+                <marker date="1490323421000" expanded="true" signature="4017:4106" placeholder="select * fro..levellog..." />
+                <marker date="1490323421000" expanded="true" signature="4995:5051" placeholder="select `char..chardata..." />
+                <marker date="1490323421000" expanded="true" signature="5207:5405" placeholder="select * fro..moneylog..." />
+                <marker date="1490323421000" expanded="true" signature="6271:6327" placeholder="select `char..chardata..." />
+                <marker date="1490323421000" expanded="true" signature="6499:6694" placeholder="select * fro..u_item_logs..." />
+                <marker date="1490323421000" expanded="true" signature="8242:8446" placeholder="insert into `forbid`..." />
+                <marker date="1490323421000" expanded="true" signature="8510:8585" placeholder="delete from ..." />
+                <marker date="1490323421000" expanded="true" signature="9009:9093" placeholder="select * fro..forbid..." />
+                <marker date="1490323421000" expanded="true" signature="10390:10494" placeholder="select `name..chardata..." />
+                <marker date="1490323421000" expanded="true" signature="14251:14342" placeholder="select * fro..system_email..." />
+                <marker date="1490323421000" expanded="true" signature="20123:20197" placeholder="select IFNUL..tip..." />
+                <marker date="1490323421000" expanded="true" signature="21176:21257" placeholder="select * fro..tip..." />
+                <marker date="1490323421000" expanded="true" signature="22998:23073" placeholder="insert into `go`..." />
+                <marker date="1490323421000" expanded="true" signature="23323:23390" placeholder="select * fro..go..." />
+                <marker date="1490323421000" expanded="true" signature="24055:24094" placeholder="select `zid`..zone..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Consts.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/components/Consts.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="454" column="36" selection-start-line="454" selection-start-column="36" selection-end-line="454" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Functions.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/components/Functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="110" column="5" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
+              <folding>
+                <marker date="1491447683292" expanded="true" signature="5316:5466" placeholder="select `name..chardata..." />
+                <marker date="1491447683292" expanded="true" signature="8336:8379" placeholder="select * fro..zone..." />
+                <marker date="1491447683292" expanded="true" signature="8531:8620" placeholder="select `dbip..platform..." />
+                <marker date="1491447683292" expanded="true" signature="14292:14363" placeholder="select * fro..order..." />
+                <marker date="1491447683292" expanded="true" signature="14595:14665" placeholder="select `name..chardata..." />
+                <marker date="1491447683292" expanded="true" signature="15465:15597" placeholder="select IFNUL..order..." />
+                <marker date="1491447683292" expanded="true" signature="15727:15878" placeholder="update `orde..." />
+                <marker date="1491447683292" expanded="true" signature="16916:16998" placeholder="select * fro..tx_script_pay..." />
+                <marker date="1491447683292" expanded="true" signature="17045:17115" placeholder="select * fro..order..." />
+                <marker date="1491447683292" expanded="true" signature="19231:19274" placeholder="select * fro..platform..." />
+                <marker date="1491447683292" expanded="true" signature="19744:19789" placeholder="select * fro..zone..." />
+                <marker date="1491447683292" expanded="true" signature="20165:20210" placeholder="select * fro..zone..." />
+                <marker date="1491447683292" expanded="true" signature="20345:20382" placeholder="select `zid`..zone_merge..." />
+                <marker date="1491447683292" expanded="true" signature="21903:21929" placeholder="select * fro..zone_merge..." />
+                <marker date="1491447683292" expanded="true" signature="22345:22404" placeholder="select * fro..item..." />
+                <marker date="1491447683292" expanded="true" signature="22789:22848" placeholder="select * fro..item..." />
+                <marker date="1491447683292" expanded="true" signature="23236:23256" placeholder="select * fro..task..." />
+                <marker date="1491447683292" expanded="true" signature="23634:23699" placeholder="select `serv..zone..." />
+                <marker date="1491447683292" expanded="true" signature="24319:24398" placeholder="select * fro..chardata..." />
+                <marker date="1491447683292" expanded="true" signature="25010:25043" placeholder="select * fro..zone_merge..." />
+                <marker date="1491447683292" expanded="true" signature="25010:25051" placeholder="select * fro..zone_merge..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ErrorController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/controllers/ErrorController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="zone.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/views/uea/zone.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="106" column="63" selection-start-line="106" selection-start-column="63" selection-end-line="106" selection-end-column="63" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AjaxController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/controllers/AjaxController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="469" column="53" selection-start-line="469" selection-start-column="53" selection-end-line="469" selection-end-column="53" />
+              <folding>
+                <marker date="1490323421000" expanded="true" signature="272:321" placeholder="SELECT `toke..user..." />
+                <marker date="1490323421000" expanded="true" signature="857:907" placeholder="select `stat..user..." />
+                <marker date="1490323421000" expanded="true" signature="1059:1120" placeholder="update `user..." />
+                <marker date="1490323421000" expanded="true" signature="1390:1470" placeholder="select * fro..user..." />
+                <marker date="1490323421000" expanded="true" signature="2407:2487" placeholder="select * fro..user..." />
+                <marker date="1490323421000" expanded="true" signature="3455:3502" placeholder="select * fro..user..." />
+                <marker date="1490323421000" expanded="true" signature="3705:3758" placeholder="select * fro..user..." />
+                <marker date="1490323421000" expanded="true" signature="4172:4209" placeholder="select * fro..notice..." />
+                <marker date="1490323421000" expanded="true" signature="4963:5160" placeholder="insert into `notice`..." />
+                <marker date="1490323421000" expanded="true" signature="6299:6499" placeholder="update `noti..." />
+                <marker date="1490323421000" expanded="true" signature="7122:7165" placeholder="delete from ..." />
+                <marker date="1490323421000" expanded="true" signature="7553:7654" placeholder="select *,FRO..platform..." />
+                <marker date="1490323421000" expanded="true" signature="14358:14413" placeholder="select `zid`..zone..." />
+                <marker date="1490323421000" expanded="true" signature="14447:14492" placeholder="delete from ..." />
+                <marker date="1490323421000" expanded="true" signature="15021:15085" placeholder="select * fro..zone..." />
+                <marker date="1490323421000" expanded="true" signature="16525:16992" placeholder="insert into `zone`..." />
+                <marker date="1490323421000" expanded="true" signature="19629:20147" placeholder="update `zone..." />
+                <marker date="1490323421000" expanded="true" signature="21783:21845" placeholder="delete from ..." />
+                <marker date="1490323421000" expanded="true" signature="22560:22621" placeholder="delete from ..." />
+                <marker date="1490323421000" expanded="true" signature="24457:24546" placeholder="select * fro..traderslog..." />
+                <marker date="1490323421000" expanded="true" signature="25531:25630" placeholder="select `stat..version..." />
+                <marker date="1490323421000" expanded="true" signature="25830:25942" placeholder="update `vers..." />
+                <marker date="1490323421000" expanded="true" signature="26466:26565" placeholder="select `upda..version..." />
+                <marker date="1490323421000" expanded="true" signature="26682:26794" placeholder="update `vers..." />
+                <marker date="1490323421000" expanded="true" signature="27260:27333" placeholder="insert into `redirect_url`..." />
+                <marker date="1490323421000" expanded="true" signature="27393:27452" placeholder="select * fro..redirect_url..." />
+                <marker date="1490323421000" expanded="true" signature="28115:28172" placeholder="delete from ..." />
+                <marker date="1490323421000" expanded="true" signature="28986:29051" placeholder="select * fro..ad_filter_str_lib..." />
+                <marker date="1490323421000" expanded="true" signature="29107:29171" placeholder="insert into `ad_filter_str_lib`..." />
+                <marker date="1490323421000" expanded="true" signature="29290:29384" placeholder="select `zid`..zone..." />
+                <marker date="1490323421000" expanded="true" signature="32402:32463" placeholder="select `vid`..version..." />
+                <marker date="1490323421000" expanded="true" signature="32706:32788" placeholder="select `wid`..welfare..." />
+                <marker date="1490323421000" expanded="true" signature="32889:32946" placeholder="select `serv..zone..." />
+                <marker date="1490323421000" expanded="true" signature="33768:33876" placeholder="update `welf..." />
+                <marker date="1490323421000" expanded="true" signature="34272:34318" placeholder="select * fro..welfare..." />
+                <marker date="1490323421000" expanded="true" signature="34944:35000" placeholder="select `char..chardata..." />
+                <marker date="1490323421000" expanded="true" signature="35058:35250" placeholder="insert into `welfare`..." />
+                <marker date="1490323421000" expanded="true" signature="36394:36450" placeholder="select `char..chardata..." />
+                <marker date="1490323421000" expanded="true" signature="36508:36685" placeholder="update `welf..." />
+                <marker date="1490323421000" expanded="true" signature="37543:37616" placeholder="select `wid`..welfare..." />
+                <marker date="1490323421000" expanded="true" signature="37651:37695" placeholder="delete from ..." />
+                <marker date="1490323421000" expanded="true" signature="39907:40111" placeholder="insert into `forbid`..." />
+                <marker date="1490323421000" expanded="true" signature="40174:40249" placeholder="delete from ..." />
+                <marker date="1490323421000" expanded="true" signature="41147:41192" placeholder="select * fro..notice..." />
+                <marker date="1490323421000" expanded="true" signature="41717:41739" placeholder="..." />
+                <marker date="1490323421000" expanded="true" signature="41992:42015" placeholder="..." />
+                <marker date="1490323421000" expanded="true" signature="42151:42182" placeholder="..." />
+                <marker date="1490323421000" expanded="true" signature="42416:42462" placeholder="update `user..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="notice.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/views/uea/notice.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="290" column="32" selection-start-line="290" selection-start-column="32" selection-end-line="290" selection-end-column="32" />
+              <folding>
+                <marker date="1491465274211" expanded="true" signature="13190:13217" placeholder="..." />
+                <marker date="1491465274211" expanded="true" signature="13450:13477" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TableController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/protected/controllers/TableController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="553" column="14" selection-start-line="553" selection-start-column="14" selection-end-line="553" selection-end-column="14" />
+              <folding>
+                <marker date="1490323421000" expanded="true" signature="770:833" placeholder="select `char..chardata..." />
+                <marker date="1490323421000" expanded="true" signature="1184:1333" placeholder="select `char..stat_char_active..." />
+                <marker date="1490323421000" expanded="true" signature="1462:1572" placeholder="select `char..stat_char_active..." />
+                <marker date="1490323421000" expanded="true" signature="4541:4651" placeholder="select `char..stat_char_active..." />
+                <marker date="1490323421000" expanded="true" signature="5276:5364" placeholder="select * fro..first_charge_user..." />
+                <marker date="1490323421000" expanded="true" signature="8045:8157" placeholder="select `char..stat_char_active..." />
+                <marker date="1490323421000" expanded="true" signature="8725:8856" placeholder="select * fro..first_charge_user..." />
+                <marker date="1490323421000" expanded="true" signature="10369:10552" placeholder="select count..stat_char_active..." />
+                <marker date="1490323421000" expanded="true" signature="11156:11345" placeholder="select `ctim..order..." />
+                <marker date="1490323421000" expanded="true" signature="11786:11958" placeholder="select `ctim..order..." />
+                <marker date="1490323421000" expanded="true" signature="13097:13256" placeholder="select *,sum..order..." />
+                <marker date="1490323421000" expanded="true" signature="13913:13976" placeholder="select `char..chardata..." />
+                <marker date="1490323421000" expanded="true" signature="14170:14317" placeholder="select count..stat_char_active..." />
+                <marker date="1490323421000" expanded="true" signature="15321:15402" placeholder="select * fro..stat_char_active..." />
+                <marker date="1490323421000" expanded="true" signature="17681:17855" placeholder="select `ulev..stat_char_active..." />
+                <marker date="1490323421000" expanded="true" signature="19350:19431" placeholder="select * fro..stat_char_active..." />
+                <marker date="1490323421000" expanded="true" signature="28303:28323" placeholder="select * fro..task..." />
+                <marker date="1490323421000" expanded="true" signature="28510:28643" placeholder="select `char..chardata..." />
+                <marker date="1490323421000" expanded="true" signature="28807:28887" placeholder="select * fro..u_logout_log..." />
+                <marker date="1490323421000" expanded="true" signature="30641:30774" placeholder="select `char..chardata..." />
+                <marker date="1490323421000" expanded="true" signature="30939:31019" placeholder="select * fro..u_logout_log..." />
+                <marker date="1490323421000" expanded="true" signature="36165:36341" placeholder="select `plat..order..." />
+                <marker date="1490323421000" expanded="true" signature="36714:36777" placeholder="select * fro..zone..." />
+                <marker date="1490323421000" expanded="true" signature="37061:37124" placeholder="select `char..chardata..." />
+                <marker date="1490323421000" expanded="true" signature="37343:37497" placeholder="select count..stat_char_active..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/protected/views/table/logoutTask.php" />
+        <option value="$PROJECT_DIR$/protected/views/table/payRank.php" />
+        <option value="$PROJECT_DIR$/protected/views/table/professionArea.php" />
+        <option value="$PROJECT_DIR$/protected/views/table/userActive.php" />
+        <option value="$PROJECT_DIR$/protected/views/table/userLeave.php" />
+        <option value="$PROJECT_DIR$/protected/views/table/userNewPay.php" />
+        <option value="$PROJECT_DIR$/protected/views/table/vipArea.php" />
+        <option value="$PROJECT_DIR$/protected/views/table/vipUserLeave.php" />
+        <option value="$PROJECT_DIR$/protected/views/uea/zoneMerge.php" />
+        <option value="$PROJECT_DIR$/protected/components/Console.php" />
+        <option value="$PROJECT_DIR$/protected/views/tools/userLoginLog.php" />
+        <option value="$PROJECT_DIR$/protected/views/table/groupScore.php" />
+        <option value="$PROJECT_DIR$/protected/views/tools/userTraderLog.php" />
+        <option value="$PROJECT_DIR$/assets/css/bootstrap.min.css" />
+        <option value="$PROJECT_DIR$/protected/models/Db.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/ApiController.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/IndexController.php" />
+        <option value="$PROJECT_DIR$/protected/views/uea/syncNotice.php" />
+        <option value="$PROJECT_DIR$/protected/views/report/chargeArea.php" />
+        <option value="$PROJECT_DIR$/protected/views/tools/userDetail.php" />
+        <option value="$PROJECT_DIR$/protected/views/pay/orderList.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/PayController.php" />
+        <option value="$PROJECT_DIR$/protected/models/NDb.php" />
+        <option value="$PROJECT_DIR$/protected/views/report/dataCollect.php" />
+        <option value="$PROJECT_DIR$/protected/views/report/userOnline.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/AjaxController.php" />
+        <option value="$PROJECT_DIR$/protected/views/table/userPay.php" />
+        <option value="$PROJECT_DIR$/protected/config/params.php" />
+        <option value="$PROJECT_DIR$/protected/views/uea/platform.php" />
+        <option value="$PROJECT_DIR$/protected/views/table/channelPayData.php" />
+        <option value="$PROJECT_DIR$/protected/views/tools/userChatLog.php" />
+        <option value="$PROJECT_DIR$/protected/views/table/groupUserActive.php" />
+        <option value="$PROJECT_DIR$/protected/views/index/main.php" />
+        <option value="$PROJECT_DIR$/protected/views/tools/systemEmail.php" />
+        <option value="$PROJECT_DIR$/protected/components/Permission.php" />
+        <option value="$PROJECT_DIR$/protected/views/tools/tip.php" />
+        <option value="$PROJECT_DIR$/protected/views/table/dayUserPay.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/ToolsController.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/ReportController.php" />
+        <option value="$PROJECT_DIR$/protected/views/table/abilityRank.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/TableController.php" />
+        <option value="$PROJECT_DIR$/protected/views/tools/userUseLog.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/ErrorController.php" />
+        <option value="$PROJECT_DIR$/protected/views/uea/notice.php" />
+        <option value="$PROJECT_DIR$/protected/components/Functions.php" />
+        <option value="$PROJECT_DIR$/protected/extensions/PHPExcel/PHPExcel/Calculation/Functions.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/TestController.php" />
+        <option value="$PROJECT_DIR$/protected/views/uea/zone.php" />
+        <option value="$PROJECT_DIR$/protected/controllers/UeaController.php" />
+        <option value="$PROJECT_DIR$/protected/components/Consts.php" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolPackageJson" detection-done="true" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+  </component>
+  <component name="PhpServers">
+    <servers />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1912" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="true" id="Add" />
+    <OptionsSetting value="true" id="Remove" />
+    <OptionsSetting value="true" id="Checkout" />
+    <OptionsSetting value="true" id="Update" />
+    <OptionsSetting value="true" id="Status" />
+    <OptionsSetting value="true" id="Edit" />
+    <OptionsSetting value="true" id="添加" />
+    <OptionsSetting value="true" id="移除" />
+    <OptionsSetting value="true" id="签出" />
+    <OptionsSetting value="true" id="更新" />
+    <OptionsSetting value="true" id="状态" />
+    <OptionsSetting value="true" id="编辑" />
+    <ConfirmationsSetting value="0" id="Add" />
+    <ConfirmationsSetting value="0" id="Remove" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="protected" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ali" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Blade" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+    <property name="js-jscs-nodeInterpreter" value="F:\node.exe" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
+      <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
+      <BehatRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="bf44c98c-5f11-4324-a1dc-30f1f9a4443f" server_name="开发">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <envs />
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="95da123d-828d-4c43-b2aa-e6a9b1583e38" name="默认的" comment="" />
+      <created>1470226193485</created>
+      <option name="number" value="Default" />
+      <updated>1470226193485</updated>
+      <workItem from="1470281345075" duration="665000" />
+      <workItem from="1470285211951" duration="759000" />
+      <workItem from="1470297148553" duration="785000" />
+      <workItem from="1470302623209" duration="268000" />
+      <workItem from="1470310549251" duration="3290000" />
+      <workItem from="1470371819012" duration="23856000" />
+      <workItem from="1470404028204" duration="1888000" />
+      <workItem from="1470627484441" duration="8340000" />
+      <workItem from="1470640714856" duration="13880000" />
+      <workItem from="1470656787595" duration="851000" />
+      <workItem from="1470657762077" duration="3076000" />
+      <workItem from="1470661514805" duration="500000" />
+      <workItem from="1470706319092" duration="14366000" />
+      <workItem from="1470792809434" duration="4195000" />
+      <workItem from="1470797147983" duration="1091000" />
+      <workItem from="1470801436152" duration="138000" />
+      <workItem from="1470801592527" duration="2205000" />
+      <workItem from="1470812959757" duration="15124000" />
+      <workItem from="1470878990521" duration="22893000" />
+      <workItem from="1470965720585" duration="31365000" />
+      <workItem from="1471224238034" duration="1692000" />
+      <workItem from="1471226169120" duration="20641000" />
+      <workItem from="1471252557160" duration="852000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="172720000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1913646" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16596195" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25893825" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="调试" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15384616" sideWeight="0.49791667" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="运行" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="版本控制" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22210184" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="找到" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329718" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="18" />
+    </breakpoint-manager>
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/protected/views/tools/userChatLog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.97923875">
+          <caret line="121" column="36" selection-start-line="121" selection-start-column="36" selection-end-line="121" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/report/vipArea.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="104" column="32" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/config/params.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06920415">
+          <caret line="3" column="2" selection-start-line="3" selection-start-column="2" selection-end-line="3" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/tools/userDetail.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="65" column="85" selection-start-line="65" selection-start-column="85" selection-end-line="65" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/uea/userMod.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/table/groupUserActive.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.023094688">
+          <caret line="98" column="40" selection-start-line="98" selection-start-column="40" selection-end-line="98" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/table/groupUserPay.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.023094688">
+          <caret line="51" column="20" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/uea/userList.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.1778291">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/uea/userSet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/uea/auth.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="19.285715">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/framework/yii.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41841003">
+          <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/components/Controller.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/plugins/webuploader/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37593985">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/framework/web/auth/CAuthItem.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35104364">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/framework/web/auth/CAuthManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="111" column="46" selection-start-line="111" selection-start-column="46" selection-end-line="111" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/framework/yiilite.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.34411085">
+          <caret line="56" column="27" selection-start-line="56" selection-start-column="27" selection-end-line="56" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/components/Permission.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-19.428572">
+          <caret line="282" column="32" selection-start-line="282" selection-start-column="32" selection-end-line="282" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/PayController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.571428">
+          <caret line="25" column="26" selection-start-line="25" selection-start-column="26" selection-end-line="25" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/IndexController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02306805">
+          <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/tools/tip.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="231" column="16" selection-start-line="231" selection-start-column="14" selection-end-line="231" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/Db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.16551724">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/table/dayUserPay.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22099447">
+          <caret line="53" column="77" selection-start-line="53" selection-start-column="77" selection-end-line="53" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/models/NDb.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/table/abilityRank.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02306805">
+          <caret line="58" column="34" selection-start-line="58" selection-start-column="34" selection-end-line="58" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/index/default.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/index/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35645932">
+          <caret line="746" column="67" selection-start-line="746" selection-start-column="67" selection-end-line="746" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/ReportController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="342" column="32" selection-start-line="342" selection-start-column="32" selection-end-line="342" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/tools/userUseLog.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.71428573">
+          <caret line="94" column="41" selection-start-line="94" selection-start-column="41" selection-end-line="94" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/tools/systemEmail.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.71428573">
+          <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/commands/PushMsgCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/commands/PopMsgCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/index/register.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="97" column="12" selection-start-line="97" selection-start-column="12" selection-end-line="97" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/components/IP.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/TableController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="553" column="14" selection-start-line="553" selection-start-column="14" selection-end-line="553" selection-end-column="14" />
+          <folding>
+            <marker date="1490323421000" expanded="true" signature="770:833" placeholder="select `char..chardata..." />
+            <marker date="1490323421000" expanded="true" signature="1184:1333" placeholder="select `char..stat_char_active..." />
+            <marker date="1490323421000" expanded="true" signature="1462:1572" placeholder="select `char..stat_char_active..." />
+            <marker date="1490323421000" expanded="true" signature="4541:4651" placeholder="select `char..stat_char_active..." />
+            <marker date="1490323421000" expanded="true" signature="5276:5364" placeholder="select * fro..first_charge_user..." />
+            <marker date="1490323421000" expanded="true" signature="8045:8157" placeholder="select `char..stat_char_active..." />
+            <marker date="1490323421000" expanded="true" signature="8725:8856" placeholder="select * fro..first_charge_user..." />
+            <marker date="1490323421000" expanded="true" signature="10369:10552" placeholder="select count..stat_char_active..." />
+            <marker date="1490323421000" expanded="true" signature="11156:11345" placeholder="select `ctim..order..." />
+            <marker date="1490323421000" expanded="true" signature="11786:11958" placeholder="select `ctim..order..." />
+            <marker date="1490323421000" expanded="true" signature="13097:13256" placeholder="select *,sum..order..." />
+            <marker date="1490323421000" expanded="true" signature="13913:13976" placeholder="select `char..chardata..." />
+            <marker date="1490323421000" expanded="true" signature="14170:14317" placeholder="select count..stat_char_active..." />
+            <marker date="1490323421000" expanded="true" signature="15321:15402" placeholder="select * fro..stat_char_active..." />
+            <marker date="1490323421000" expanded="true" signature="17681:17855" placeholder="select `ulev..stat_char_active..." />
+            <marker date="1490323421000" expanded="true" signature="19350:19431" placeholder="select * fro..stat_char_active..." />
+            <marker date="1490323421000" expanded="true" signature="28303:28323" placeholder="select * fro..task..." />
+            <marker date="1490323421000" expanded="true" signature="28510:28643" placeholder="select `char..chardata..." />
+            <marker date="1490323421000" expanded="true" signature="28807:28887" placeholder="select * fro..u_logout_log..." />
+            <marker date="1490323421000" expanded="true" signature="30641:30774" placeholder="select `char..chardata..." />
+            <marker date="1490323421000" expanded="true" signature="30939:31019" placeholder="select * fro..u_logout_log..." />
+            <marker date="1490323421000" expanded="true" signature="36165:36341" placeholder="select `plat..order..." />
+            <marker date="1490323421000" expanded="true" signature="36714:36777" placeholder="select * fro..zone..." />
+            <marker date="1490323421000" expanded="true" signature="37061:37124" placeholder="select `char..chardata..." />
+            <marker date="1490323421000" expanded="true" signature="37343:37497" placeholder="select count..stat_char_active..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/config/console.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.678572">
+          <caret line="31" column="10" selection-start-line="31" selection-start-column="10" selection-end-line="31" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/commands/ChgVerCommand.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.714286">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/uea/notice.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="290" column="32" selection-start-line="290" selection-start-column="32" selection-end-line="290" selection-end-column="32" />
+          <folding>
+            <marker date="1491465274211" expanded="true" signature="13190:13217" placeholder="..." />
+            <marker date="1491465274211" expanded="true" signature="13450:13477" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/components/Console.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.74482757">
+          <caret line="36" column="30" selection-start-line="36" selection-start-column="30" selection-end-line="36" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/extensions/PHPExcel/PHPExcel/Calculation/Functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.4958564">
+          <caret line="589" column="27" selection-start-line="589" selection-start-column="27" selection-end-line="589" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/TestController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.107143">
+          <caret line="70" column="23" selection-start-line="70" selection-start-column="23" selection-end-line="70" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/components/CacheMemcached.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.23094688">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/uea/platform.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.027624309">
+          <caret line="461" column="63" selection-start-line="461" selection-start-column="63" selection-end-line="461" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/config/main.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9379728">
+          <caret line="48" column="26" selection-start-line="48" selection-start-column="26" selection-end-line="48" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/AjaxController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="469" column="53" selection-start-line="469" selection-start-column="53" selection-end-line="469" selection-end-column="53" />
+          <folding>
+            <marker date="1490323421000" expanded="true" signature="272:321" placeholder="SELECT `toke..user..." />
+            <marker date="1490323421000" expanded="true" signature="857:907" placeholder="select `stat..user..." />
+            <marker date="1490323421000" expanded="true" signature="1059:1120" placeholder="update `user..." />
+            <marker date="1490323421000" expanded="true" signature="1390:1470" placeholder="select * fro..user..." />
+            <marker date="1490323421000" expanded="true" signature="2407:2487" placeholder="select * fro..user..." />
+            <marker date="1490323421000" expanded="true" signature="3455:3502" placeholder="select * fro..user..." />
+            <marker date="1490323421000" expanded="true" signature="3705:3758" placeholder="select * fro..user..." />
+            <marker date="1490323421000" expanded="true" signature="4172:4209" placeholder="select * fro..notice..." />
+            <marker date="1490323421000" expanded="true" signature="4963:5160" placeholder="insert into `notice`..." />
+            <marker date="1490323421000" expanded="true" signature="6299:6499" placeholder="update `noti..." />
+            <marker date="1490323421000" expanded="true" signature="7122:7165" placeholder="delete from ..." />
+            <marker date="1490323421000" expanded="true" signature="7553:7654" placeholder="select *,FRO..platform..." />
+            <marker date="1490323421000" expanded="true" signature="14358:14413" placeholder="select `zid`..zone..." />
+            <marker date="1490323421000" expanded="true" signature="14447:14492" placeholder="delete from ..." />
+            <marker date="1490323421000" expanded="true" signature="15021:15085" placeholder="select * fro..zone..." />
+            <marker date="1490323421000" expanded="true" signature="16525:16992" placeholder="insert into `zone`..." />
+            <marker date="1490323421000" expanded="true" signature="19629:20147" placeholder="update `zone..." />
+            <marker date="1490323421000" expanded="true" signature="21783:21845" placeholder="delete from ..." />
+            <marker date="1490323421000" expanded="true" signature="22560:22621" placeholder="delete from ..." />
+            <marker date="1490323421000" expanded="true" signature="24457:24546" placeholder="select * fro..traderslog..." />
+            <marker date="1490323421000" expanded="true" signature="25531:25630" placeholder="select `stat..version..." />
+            <marker date="1490323421000" expanded="true" signature="25830:25942" placeholder="update `vers..." />
+            <marker date="1490323421000" expanded="true" signature="26466:26565" placeholder="select `upda..version..." />
+            <marker date="1490323421000" expanded="true" signature="26682:26794" placeholder="update `vers..." />
+            <marker date="1490323421000" expanded="true" signature="27260:27333" placeholder="insert into `redirect_url`..." />
+            <marker date="1490323421000" expanded="true" signature="27393:27452" placeholder="select * fro..redirect_url..." />
+            <marker date="1490323421000" expanded="true" signature="28115:28172" placeholder="delete from ..." />
+            <marker date="1490323421000" expanded="true" signature="28986:29051" placeholder="select * fro..ad_filter_str_lib..." />
+            <marker date="1490323421000" expanded="true" signature="29107:29171" placeholder="insert into `ad_filter_str_lib`..." />
+            <marker date="1490323421000" expanded="true" signature="29290:29384" placeholder="select `zid`..zone..." />
+            <marker date="1490323421000" expanded="true" signature="32402:32463" placeholder="select `vid`..version..." />
+            <marker date="1490323421000" expanded="true" signature="32706:32788" placeholder="select `wid`..welfare..." />
+            <marker date="1490323421000" expanded="true" signature="32889:32946" placeholder="select `serv..zone..." />
+            <marker date="1490323421000" expanded="true" signature="33768:33876" placeholder="update `welf..." />
+            <marker date="1490323421000" expanded="true" signature="34272:34318" placeholder="select * fro..welfare..." />
+            <marker date="1490323421000" expanded="true" signature="34944:35000" placeholder="select `char..chardata..." />
+            <marker date="1490323421000" expanded="true" signature="35058:35250" placeholder="insert into `welfare`..." />
+            <marker date="1490323421000" expanded="true" signature="36394:36450" placeholder="select `char..chardata..." />
+            <marker date="1490323421000" expanded="true" signature="36508:36685" placeholder="update `welf..." />
+            <marker date="1490323421000" expanded="true" signature="37543:37616" placeholder="select `wid`..welfare..." />
+            <marker date="1490323421000" expanded="true" signature="37651:37695" placeholder="delete from ..." />
+            <marker date="1490323421000" expanded="true" signature="39907:40111" placeholder="insert into `forbid`..." />
+            <marker date="1490323421000" expanded="true" signature="40174:40249" placeholder="delete from ..." />
+            <marker date="1490323421000" expanded="true" signature="41147:41192" placeholder="select * fro..notice..." />
+            <marker date="1490323421000" expanded="true" signature="41717:41739" placeholder="..." />
+            <marker date="1490323421000" expanded="true" signature="41992:42015" placeholder="..." />
+            <marker date="1490323421000" expanded="true" signature="42151:42182" placeholder="..." />
+            <marker date="1490323421000" expanded="true" signature="42416:42462" placeholder="update `user..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/ErrorController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="22" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="34" column="42" selection-start-line="34" selection-start-column="42" selection-end-line="34" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/views/uea/zone.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="106" column="63" selection-start-line="106" selection-start-column="63" selection-end-line="106" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/components/Functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="110" column="5" selection-start-line="110" selection-start-column="5" selection-end-line="110" selection-end-column="5" />
+          <folding>
+            <marker date="1491447683292" expanded="true" signature="5316:5466" placeholder="select `name..chardata..." />
+            <marker date="1491447683292" expanded="true" signature="8336:8379" placeholder="select * fro..zone..." />
+            <marker date="1491447683292" expanded="true" signature="8531:8620" placeholder="select `dbip..platform..." />
+            <marker date="1491447683292" expanded="true" signature="14292:14363" placeholder="select * fro..order..." />
+            <marker date="1491447683292" expanded="true" signature="14595:14665" placeholder="select `name..chardata..." />
+            <marker date="1491447683292" expanded="true" signature="15465:15597" placeholder="select IFNUL..order..." />
+            <marker date="1491447683292" expanded="true" signature="15727:15878" placeholder="update `orde..." />
+            <marker date="1491447683292" expanded="true" signature="16916:16998" placeholder="select * fro..tx_script_pay..." />
+            <marker date="1491447683292" expanded="true" signature="17045:17115" placeholder="select * fro..order..." />
+            <marker date="1491447683292" expanded="true" signature="19231:19274" placeholder="select * fro..platform..." />
+            <marker date="1491447683292" expanded="true" signature="19744:19789" placeholder="select * fro..zone..." />
+            <marker date="1491447683292" expanded="true" signature="20165:20210" placeholder="select * fro..zone..." />
+            <marker date="1491447683292" expanded="true" signature="20345:20382" placeholder="select `zid`..zone_merge..." />
+            <marker date="1491447683292" expanded="true" signature="21903:21929" placeholder="select * fro..zone_merge..." />
+            <marker date="1491447683292" expanded="true" signature="22345:22404" placeholder="select * fro..item..." />
+            <marker date="1491447683292" expanded="true" signature="22789:22848" placeholder="select * fro..item..." />
+            <marker date="1491447683292" expanded="true" signature="23236:23256" placeholder="select * fro..task..." />
+            <marker date="1491447683292" expanded="true" signature="23634:23699" placeholder="select `serv..zone..." />
+            <marker date="1491447683292" expanded="true" signature="24319:24398" placeholder="select * fro..chardata..." />
+            <marker date="1491447683292" expanded="true" signature="25010:25043" placeholder="select * fro..zone_merge..." />
+            <marker date="1491447683292" expanded="true" signature="25010:25051" placeholder="select * fro..zone_merge..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/components/Consts.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="454" column="36" selection-start-line="454" selection-start-column="36" selection-end-line="454" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/ToolsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-29.535715">
+          <caret line="129" column="69" selection-start-line="129" selection-start-column="69" selection-end-line="129" selection-end-column="69" />
+          <folding>
+            <marker date="1490323421000" expanded="true" signature="2172:2228" placeholder="select `char..chardata..." />
+            <marker date="1490323421000" expanded="true" signature="2392:2504" placeholder="select `deta..stat_char_active..." />
+            <marker date="1490323421000" expanded="true" signature="3803:3859" placeholder="select `char..chardata..." />
+            <marker date="1490323421000" expanded="true" signature="4017:4106" placeholder="select * fro..levellog..." />
+            <marker date="1490323421000" expanded="true" signature="4995:5051" placeholder="select `char..chardata..." />
+            <marker date="1490323421000" expanded="true" signature="5207:5405" placeholder="select * fro..moneylog..." />
+            <marker date="1490323421000" expanded="true" signature="6271:6327" placeholder="select `char..chardata..." />
+            <marker date="1490323421000" expanded="true" signature="6499:6694" placeholder="select * fro..u_item_logs..." />
+            <marker date="1490323421000" expanded="true" signature="8242:8446" placeholder="insert into `forbid`..." />
+            <marker date="1490323421000" expanded="true" signature="8510:8585" placeholder="delete from ..." />
+            <marker date="1490323421000" expanded="true" signature="9009:9093" placeholder="select * fro..forbid..." />
+            <marker date="1490323421000" expanded="true" signature="10390:10494" placeholder="select `name..chardata..." />
+            <marker date="1490323421000" expanded="true" signature="14251:14342" placeholder="select * fro..system_email..." />
+            <marker date="1490323421000" expanded="true" signature="20123:20197" placeholder="select IFNUL..tip..." />
+            <marker date="1490323421000" expanded="true" signature="21176:21257" placeholder="select * fro..tip..." />
+            <marker date="1490323421000" expanded="true" signature="22998:23073" placeholder="insert into `go`..." />
+            <marker date="1490323421000" expanded="true" signature="23323:23390" placeholder="select * fro..go..." />
+            <marker date="1490323421000" expanded="true" signature="24055:24094" placeholder="select `zid`..zone..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/protected/controllers/UeaController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.284689">
+          <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
+          <folding>
+            <marker date="1491796698444" expanded="true" signature="1030:1071" placeholder="select * fro..notice..." />
+            <marker date="1491796698444" expanded="true" signature="1932:2031" placeholder="insert into `sync_notice`..." />
+            <marker date="1491796698444" expanded="true" signature="2276:2325" placeholder="select * fro..sync_notice..." />
+            <marker date="1491796698444" expanded="true" signature="2760:2783" placeholder="select * fro..version..." />
+            <marker date="1491796698444" expanded="true" signature="3517:3592" placeholder="select * fro..zone..." />
+            <marker date="1491796698444" expanded="true" signature="4699:4751" placeholder="select * fro..zone_merge..." />
+            <marker date="1491796698444" expanded="true" signature="5161:5210" placeholder="select * fro..zone_merge..." />
+            <marker date="1491796698444" expanded="true" signature="5458:5526" placeholder="update `zone..." />
+            <marker date="1491796698444" expanded="true" signature="5654:5772" placeholder="insert into `zone_merge`..." />
+            <marker date="1491796698444" expanded="true" signature="5914:5963" placeholder="delete from ..." />
+            <marker date="1491796698444" expanded="true" signature="6029:6080" placeholder="select * fro..zone..." />
+            <marker date="1491796698444" expanded="true" signature="6114:6683" placeholder="update `zone..." />
+            <marker date="1491796698444" expanded="true" signature="7156:7204" placeholder="select * fro..zone_merge..." />
+            <marker date="1491796698444" expanded="true" signature="7519:7545" placeholder="delete from ..." />
+            <marker date="1491796698444" expanded="true" signature="8090:8203" placeholder="insert into `task`..." />
+            <marker date="1491796698444" expanded="true" signature="8690:8728" placeholder="delete from ..." />
+            <marker date="1491796698444" expanded="true" signature="9062:9131" placeholder="insert into `item`..." />
+            <marker date="1491796698444" expanded="true" signature="9603:9641" placeholder="delete from ..." />
+            <marker date="1491796698444" expanded="true" signature="9975:10042" placeholder="insert into `item`..." />
+            <marker date="1491796698444" expanded="true" signature="10386:10406" placeholder="select * fro..item..." />
+            <marker date="1491796698444" expanded="true" signature="10467:10492" placeholder="select * fro..item_pack..." />
+            <marker date="1491796698444" expanded="true" signature="13650:13693" placeholder="select * fro..version..." />
+            <marker date="1491796698444" expanded="true" signature="13877:13988" placeholder="select * fro..version..." />
+            <marker date="1491796698444" expanded="true" signature="14506:14572" placeholder="update `vers..." />
+            <marker date="1491796698444" expanded="true" signature="14634:14702" placeholder="update `vers..." />
+            <marker date="1491796698444" expanded="true" signature="14771:14812" placeholder="select * fro..version..." />
+            <marker date="1491796698444" expanded="true" signature="15087:15115" placeholder="select * fro..redirect_url..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

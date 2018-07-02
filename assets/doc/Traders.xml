@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Config>
+
+    <SellCfg num="10" chargeRate="5"/>
+
+    <!-- 出售类型分类 
+        SellCategory 出售界面的分类 
+            desc 最好控制在3个字以内
+            use:
+                true 策划需要填写具体的配置
+                false 策划不需要填写具体的配置
+                默认值:false
+            Category 具体的分类，type对应item表的类型
+    -->
+
+    <SellCategory desc="装备" > 
+    </SellCategory>
+    <SellCategory desc="魔兽卡" use="true">
+        <Category type="24"></Category>
+		<Category type="25"></Category>
+    </SellCategory>
+    <SellCategory desc="强化相关" use="true">
+	     <Category type="11"></Category>
+		 <Category type="12"></Category>
+		 <Category type="13"></Category>
+		 <Category type="14"></Category>
+		 <Category type="22"></Category>
+		 <Category type="101"></Category>
+		 <Category type="111"></Category>
+		 <Category type="121"></Category>
+		 <Category type="131"></Category>
+    </SellCategory>
+    <SellCategory desc="其他">
+    </SellCategory>
+    <!-- 
+        Category id 标识 程序用 顺序从1累加
+            Cell id 标识 程序用 顺序从1累加
+            Item
+                type 1:武器装备,2:道具,3:IDs(1,2,3)
+                objs type==1或2时，为道具类型
+                    type==3时，为道具id
+    -->
+    <Category id="1" desc="装备">
+        <Cell id="1" desc="武器">
+            <Item type="1" objs="1"/>
+        </Cell>
+        <Cell id="2" desc="衣服">
+            <Item type="1" objs="4"/>
+        </Cell>
+        <Cell id="3" desc="头盔">
+            <Item type="1" objs="2"/>
+        </Cell>
+		 <Cell id="4" desc="项链">
+            <Item type="1" objs="3"/>
+        </Cell>
+		 <Cell id="5" desc="鞋子">
+            <Item type="1" objs="5"/>
+        </Cell>
+		 <Cell id="6" desc="护腕">
+            <Item type="1" objs="6"/>
+        </Cell>
+		 <Cell id="7" desc="戒指">
+            <Item type="1" objs="7"/>
+        </Cell>
+		 <Cell id="8" desc="腰带">
+            <Item type="1" objs="8"/>
+        </Cell>
+    </Category>
+	
+	<Category id="2" desc="宠物装备">
+        <Cell id="1" desc="兽甲">
+            <Item type="1" objs="52"/>
+        </Cell>
+        <Cell id="2" desc="鞋子">
+            <Item type="1" objs="53"/>
+        </Cell>
+        <Cell id="3" desc="护腕">
+            <Item type="1" objs="54"/>
+        </Cell>
+		 <Cell id="4" desc="头饰">
+            <Item type="1" objs="55"/>
+        </Cell>
+		 <Cell id="5" desc="翅膀">
+            <Item type="1" objs="56"/>
+        </Cell>
+		 <Cell id="6" desc="兽爪">
+            <Item type="1" objs="57"/>
+        </Cell>
+		 <Cell id="7" desc="项圈">
+            <Item type="1" objs="58"/>
+        </Cell>
+		 <Cell id="8" desc="眼镜">
+            <Item type="1" objs="59"/>
+        </Cell>
+    </Category>
+	
+    <Category id="3" desc="强化相关">
+        <Cell id="1" desc="升星石">
+            <Item type="2" objs="12"/>
+        </Cell>
+		<Cell id="2" desc="原石">
+            <Item type="3" objs="239,231,232,233,234"/>
+        </Cell>
+		<Cell id="3" desc="攻击宝石">
+            <Item type="2" objs="101"/>
+        </Cell>
+		<Cell id="4" desc="生命宝石">
+            <Item type="2" objs="111"/>
+        </Cell>
+		<Cell id="5" desc="物防宝石">
+            <Item type="2" objs="121"/>
+        </Cell>
+		<Cell id="6" desc="法防宝石">
+            <Item type="2" objs="131"/>
+        </Cell>
+		<Cell id="7" desc="宝石碎片">
+            <Item type="2" objs="15"/>
+        </Cell>
+		<Cell id="8" desc="红装碎片">
+            <Item type="3" objs="242"/>
+        </Cell>
+		<Cell id="9" desc="金装图纸">
+            <Item type="3" objs="248,274,275,276,277,278,279"/>
+        </Cell>
+    </Category>
+	
+	<Category id="4" desc="坐骑相关">
+	   <Cell id="1" desc="骑魂">
+            <Item type="3" objs="201"/>
+     </Cell>
+    </Category>
+	
+	<Category id="5" desc="图鉴卡">
+	    <Cell id="1" desc="图鉴卡">
+            <Item type="2" objs="24"/>
+        </Cell>
+		<Cell id="2" desc="图鉴碎片">
+            <Item type="2" objs="25"/>
+        </Cell>
+    </Category>
+	
+    <Category id="6" desc="宠物相关">
+	 <Cell id="1" desc="宠物灵魂石">
+            <Item type="2" objs="22"/>
+     </Cell>
+	 <Cell id="2" desc="宠物魂魄">
+            <Item type="3" objs="50001,50002,50003,50004,50005,50006,50007,50009,50010"/>
+     </Cell>
+	 <Cell id="3" desc="未鉴定魂魄">
+            <Item type="3" objs="1051,1052,1053,1054,1055,1056,1057,1058,1059"/>
+     </Cell>
+	 <Cell id="4" desc="宠物升阶石">
+            <Item type="3" objs="221,222,223,224"/>
+     </Cell>
+    </Category>
+    <Category id="7" desc="杂物">
+	   <Cell id="1" desc="潘多拉魔盒">
+            <Item type="2" objs="32"/>
+     </Cell>
+	   <Cell id="2" desc="宝箱">
+            <Item type="2" objs="21"/>
+     </Cell>
+	   <Cell id="3" desc="悬赏令">
+            <Item type="2" objs="34"/>
+     </Cell>
+	 <Cell id="4" desc="技能相关">
+            <Item type="3" objs="204,205,206,207,208,263,264"/>
+     </Cell>
+	 <Cell id="5" desc="活动集字">
+            <Item type="3" objs="1551,1552,1553,1554,1555,1556,1557,1558,1559,1571,1572,1573,1574"/>
+     </Cell>
+    </Category>
+</Config>

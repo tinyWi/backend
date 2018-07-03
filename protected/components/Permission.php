@@ -42,6 +42,10 @@ class Permission {
                 'name' => '用户列表',
                 'url' => yii::app()->createUrl('Uea/UserList')
             ],
+            'GuessTemplate' => [
+                'name' => '猜猜模板管理',
+                'url' => yii::app()->createUrl('Uea/GuessTemplate')
+            ],
             'LogList' => [
                 'name' => '操作日志',
                 'url' => yii::app()->createUrl('Uea/LogList')

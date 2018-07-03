@@ -170,4 +170,120 @@ class AjaxController extends Controller
 		}
 		die(json_encode($result));
 	}
+
+	// 添加模板
+	public function actionTemplateAdd(){
+		$title = Functions::getParam('title');
+		$desc = Functions::getParam('desc');
+		$subjectid = Functions::getParam('subjectid');
+		$labels = Functions::getParam('labels');
+		$selection = Functions::getParam('selection');
+		$odds = Functions::getParam('odds');
+		$earlyPub = strtotime(Functions::getParam('earlyPub'));
+		$latePub = strtotime(Functions::getParam('latePub'));
+		$endBet = strtotime(Functions::getParam('endBet'));
+		$end = strtotime(Functions::getParam('end'));
+		$endInfo = Functions::getParam('endInfo');
+		if($title && $desc && $subjectid && $labels && $selection && $odds && $earlyPub && $latePub && $endBet && $end){
+			try {
+				$data = [
+						'id' => 6666666,
+						'title' => $title,
+						'desc' => $desc,
+						'subject_id' => $subjectid,
+						'labels' => $labels,
+						'selection' => $selection,
+						'odds' => $odds,
+						'early_publish' => $earlyPub,
+						'late_publish' => $latePub,
+						'end_bet_time' => $endBet,
+						'end_time' => $end,
+						'guess_type' => 4,  // 表示通过后台添加的模板
+						'end_info' => json_encode(['answer'=>$endInfo])
+					];
+				$addResult = NDb::connect(UER)->table('cc_guess_template')->insert($data);
+			}catch (Exception $e) {
+				$addResult = false;
+			}
+			if ($addResult) {
+				$result = ['status' => 0, 'msg' => ''];
+			} else {
+				$result = ['status' => -1, 'msg' => '添加失败'];
+			}
+		} else {
+			$result = ['status' => -1, 'msg' => '选项不可为空'];
+		}
+		die(json_encode($result));
+	}
+
+	public function actionTemplateDel(){
+		$id = Functions::getParam('templateid');
+		if($id){
+			NDb::connect(UER)->table('cc_guess_template')->where(["`id`='{$id}'"])->delete();
+			$result = ['status'=>0,'msg'=>''];
+		}else{
+			$result = ['status' => -1, 'msg' => '该记录为空'];
+		}
+		die(json_encode($result));
+	}
+
+	public function actionTemplateGet(){
+		$id = Functions::getParam('templateid');
+		if($id){
+			$row = NDb::connect(UER)->table('cc_guess_template')->where(["`id`='{$id}'"])->selectRow();
+			$row['early_publish'] = date('Y-m-d H:i:s', $row['early_publish']);
+			$row['late_publish'] = date('Y-m-d H:i:s', $row['late_publish']);
+			$row['end_bet_time'] = date('Y-m-d H:i:s', $row['end_bet_time']);
+			$row['end_time'] = date('Y-m-d H:i:s', $row['end_time']);
+			$row['end_info'] = current(json_decode($row['end_info'],true));
+			$result = ['status'=>0,'temRow'=>$row,'msg'=>''];
+		}else{
+			$result = ['status'=>-1,'msg'=>'该记录为空'];
+		}
+		die(json_encode($result));
+	}
+
+	public function actionTemplateMod(){
+		$id = Functions::getParam('id');
+		$title = Functions::getParam('title');
+		$desc = Functions::getParam('desc');
+		$subjectid = Functions::getParam('subjectid');
+		$labels = Functions::getParam('labels');
+		$selection = Functions::getParam('selection');
+		$odds = Functions::getParam('odds');
+		$earlyPub = strtotime(Functions::getParam('earlyPub'));
+		$latePub = strtotime(Functions::getParam('latePub'));
+		$endBet = strtotime(Functions::getParam('endBet'));
+		$end = strtotime(Functions::getParam('end'));
+		$endInfo = Functions::getParam('endInfo');
+		if($id && $title && $desc && $subjectid && $labels && $selection && $odds && $earlyPub && $latePub && $endBet && $end){
+			try{
+				$data = [
+						'title' => $title,
+						'desc' => $desc,
+						'subject_id' => $subjectid,
+						'labels' => $labels,
+						'selection' => $selection,
+						'odds' => $odds,
+						'early_publish' => $earlyPub,
+						'late_publish' => $latePub,
+						'end_bet_time' => $endBet,
+						'end_time' => $end,
+						'guess_type' => 4,  // 表示通过后台添加的模板
+						'end_info' => json_encode(['answer'=>$endInfo])
+						];
+				$modResult = NDb::connect(UER)->table('cc_guess_template')->where(["`id`='{$id}'"])->update($data);
+			}catch (Exception $e) {
+	            $modResult = false;
+            }
+            if($modResult){
+            	$result = ['status' => 0, 'msg' => ''];
+            }else{
+            	$result = ['status' => -1, 'msg' => '添加失败'];
+            }
+		}else{
+			$result = ['status' => -1, 'msg' => '该记录为空'];
+		}
+		die(json_encode($result));
+	}
 }

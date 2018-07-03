@@ -32,6 +32,13 @@ class UeaController extends Controller
 		$this->render('userList',$listData);
 	}
 
+	// 猜猜模板管理
+	public function actionGuessTemplate(){
+		$templateList = NDb::connect(UER)->table('cc_guess_template')->limit(10)->select();
+		$listData['templateList'] = $templateList;
+		$this->render('guessTemplate',$listData);
+	}
+
 	// 修改资料
 	public function actionUserMod(){
 		$uid = Yii::app()->session['user']['uid'];

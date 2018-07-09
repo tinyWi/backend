@@ -29,10 +29,8 @@ defined('GO_SCENE') or define('GO_SCENE', dirname(__FILE__) . '/assets/exec/Scen
 
 // UEA、UER、MAIN OR LOG
 defined('UEA') or define('UEA', 'uea');
-defined('UER') or define('UER', 'uer');
-defined('MAIN') or define('MAIN', 'main');
+defined('CAICAI') or define('CAICAI', 'caicai');
 defined('LOG') or define('LOG', 'log');
-defined('PLATFORM') or define('PLATFORM', 'platform');
 
 require_once($func);
 require_once($yii);

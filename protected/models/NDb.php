@@ -132,17 +132,11 @@ class NDb{
 			case 'uea' == $dbName:
 				self::$__conn = Yii::app()->UEA;
 				break;
-			case 'uer' == $dbName:
-				self::$__conn = Yii::app()->UER;
-				break;
-			case 'main' == $dbName:
-				self::$__conn = Yii::app()->session['main'];
+			case 'caicai' == $dbName:
+				self::$__conn = Yii::app()->CAICAI;
 				break;
 			case 'log' == $dbName:
 				self::$__conn = Yii::app()->session['log'];
-				break;
-			case 'platform' == $dbName:
-				self::$__conn = Yii::app()->session['platform'];
 				break;
 			default:
 				self::$__conn = Yii::app()->UEA;

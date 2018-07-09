@@ -2,7 +2,6 @@
 // 主配置文件
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>' | 游曳联运平台',
 	// pre load component
 	'preload'=>array('log'),
 	// auto load class
@@ -11,7 +10,6 @@ return array(
 		'application.components.*',
 		'application.extensions.PHPExcel.*',
 		'application.extensions.PHPMailer.*',
-		'application.extensions.tx.*', // 腾讯
 	),
 	// default ctrl/action
 	'defaultController'=>'Index/Login',
@@ -48,20 +46,20 @@ return array(
 		// backend database
 		'UEA'=>array(
 			'class' => 'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.53.11;dbname=uea',
+			'connectionString' => 'mysql:host=127.0.0.1;dbname=uea',
 			'emulatePrepare' => true,
-			'username' => 'caicai',
-			'password' => '123456',
+			'username' => 'root',
+			'password' => 'root',
 			'charset' => 'utf8',
 			'tablePrefix'=>''
 		),
 		// api database
-		'UER'=>array(
+		'CAICAI'=>array(
 			'class' => 'CDbConnection',
-			'connectionString' => 'mysql:host=192.168.53.11;dbname=caicai',
+			'connectionString' => 'mysql:host=127.0.0.1;dbname=caicai',
 			'emulatePrepare' => true,
-			'username' => 'caicai',
-			'password' => '123456',
+			'username' => 'root',
+			'password' => 'root',
 			'charset' => 'utf8',
 			'tablePrefix'=>''
 		),

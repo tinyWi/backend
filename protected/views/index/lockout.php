@@ -7,9 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 
-    <title>游曳联运平台 - 登录超时</title>
-    <meta name="keywords" content="游曳联运平台">
-    <meta name="description" content="游曳联运平台">
+    <title><?php echo Yii::app()->params['name']; ?> - 登录超时</title>
 
     <link href="<?php echo Yii::app()->baseUrl;?>/assets/css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
     <link href="<?php echo Yii::app()->baseUrl;?>/assets/css/font-awesome.min.css?v=4.3.0" rel="stylesheet">

@@ -34,7 +34,7 @@ class UeaController extends Controller
 
 	// 猜猜模板管理
 	public function actionGuessTemplate(){
-		$templateList = NDb::connect(UER)->table('cc_guess_template')->limit(10)->select();
+		$templateList = NDb::connect(CAICAI)->table('cc_guess_template')->limit(10)->select();
 		$listData['templateList'] = $templateList;
 		$this->render('guessTemplate',$listData);
 	}
@@ -133,86 +133,6 @@ class UeaController extends Controller
 		$logList = is_file(WEB_ROOT . '/assets/log/' . date('Ymd') . '.log')? explode( "\r\n", file_get_contents( WEB_ROOT . '/assets/log/' . date('Ymd') . '.log')): [];
 		$listData['logList'] = array_reverse( array_filter( $logList));
 		$this->render('logList',$listData);
-	}
-
-	// 文件管理
-	public function actionFileManage(){
-		// 美化文件名
-		$asNameList = [
-			'.'=>'刷新',
-			'..'=>'上一页',
-		];
-		// 隐藏文件
-		$hideList = [
-			'.git',
-			'.idea',
-			'data',
-			'tests',
-			'migrations',
-			'commands',
-			'messages',
-		];
-		$rootPath = Functions::getParam('folder')? Functions::getParam('folder'): Yii::getPathOfAlias('webroot');
-		// url防止过长处理
-		$checkFileList = explode( '/', $rootPath);
-		foreach($checkFileList as $nowKey => $checkFile){
-			if(".." == $checkFile){
-				$prevKey = $nowKey - 1;
-				$prev2Key = $prevKey - 1;
-				if(isset($checkFileList[$prevKey]) && (isset($checkFileList[$prev2Key]) && $checkFileList[$prev2Key])){
-					unset($checkFileList[$prevKey]);
-					unset($checkFileList[$nowKey]);
-				}
-			}
-			if('.' == $checkFile){
-				unset($checkFileList[$nowKey]);
-			}
-		}
-		$rootPath = implode( '/', $checkFileList);
-		// 如果超出规定目录,重置路径
-		$finalFileName = substr( str_replace( ["/uea","/.."], "",Yii::getPathOfAlias('webroot')), strripos( str_replace( ["/uea","/.."], "",Yii::getPathOfAlias('webroot')), "/"));
-		if(substr( $rootPath, strripos( $rootPath, "/")) == $finalFileName){
-			$hideList[] = "..";
-		}
-		$listData = [ "fileList"=>[], "folderList"=>[]];
-		$fileList = $folderList = [];
-		foreach(scandir($rootPath) as $file) {
-			if(!in_array( $file, $hideList)) {
-				$tempPath = $rootPath . '/' . $file;
-				if (isset($asNameList[$file])) {
-					$file = $asNameList[$file];
-				}
-				if (is_dir($tempPath)) {
-					$folderList[] = [
-						'name' => $file,
-						'path' => $tempPath
-					];
-				} else {
-					$fileList[] = [
-						'name' => $file,
-						'path' => $tempPath,
-						'ctime' => filectime($tempPath),
-						'mtime' => filemtime($tempPath),
-						'atime' => fileatime($tempPath),
-						'size' => Functions::byte2Format(filesize($tempPath))
-					];
-				}
-			}
-		}
-		$listData['folderList'] = $folderList;
-		$listData['fileList'] = $fileList;
-		$listData['rootPath'] = $rootPath;
-		$this->render('fileManage',$listData);
-	}
-
-	// 文件视图
-	public function actionFileView(){
-		$file = Functions::getParam("file");
-		$listData = [ 'content'=>'// code null'];
-		if(is_file( $file)){
-			$listData['content'] = file_get_contents( $file);
-		}
-		$this->render('fileView',$listData);
 	}
 
 	// 权限管理

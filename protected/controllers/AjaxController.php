@@ -201,7 +201,7 @@ class AjaxController extends Controller
 						'guess_type' => 4,  // 表示通过后台添加的模板
 						'end_info' => json_encode(['answer'=>$endInfo])
 					];
-				$addResult = NDb::connect(UER)->table('cc_guess_template')->insert($data);
+				$addResult = NDb::connect(CAICAI)->table('cc_guess_template')->insert($data);
 			}catch (Exception $e) {
 				$addResult = false;
 			}
@@ -219,7 +219,7 @@ class AjaxController extends Controller
 	public function actionTemplateDel(){
 		$id = Functions::getParam('templateid');
 		if($id){
-			NDb::connect(UER)->table('cc_guess_template')->where(["`id`='{$id}'"])->delete();
+			NDb::connect(CAICAI)->table('cc_guess_template')->where(["`id`='{$id}'"])->delete();
 			$result = ['status'=>0,'msg'=>''];
 		}else{
 			$result = ['status' => -1, 'msg' => '该记录为空'];
@@ -230,7 +230,7 @@ class AjaxController extends Controller
 	public function actionTemplateGet(){
 		$id = Functions::getParam('templateid');
 		if($id){
-			$row = NDb::connect(UER)->table('cc_guess_template')->where(["`id`='{$id}'"])->selectRow();
+			$row = NDb::connect(CAICAI)->table('cc_guess_template')->where(["`id`='{$id}'"])->selectRow();
 			$row['early_publish'] = date('Y-m-d H:i:s', $row['early_publish']);
 			$row['late_publish'] = date('Y-m-d H:i:s', $row['late_publish']);
 			$row['end_bet_time'] = date('Y-m-d H:i:s', $row['end_bet_time']);
@@ -272,7 +272,7 @@ class AjaxController extends Controller
 						'guess_type' => 4,  // 表示通过后台添加的模板
 						'end_info' => json_encode(['answer'=>$endInfo])
 						];
-				$modResult = NDb::connect(UER)->table('cc_guess_template')->where(["`id`='{$id}'"])->update($data);
+				$modResult = NDb::connect(CAICAI)->table('cc_guess_template')->where(["`id`='{$id}'"])->update($data);
 			}catch (Exception $e) {
 	            $modResult = false;
             }

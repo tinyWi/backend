@@ -7,9 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
 
-    <title>游曳联合运营平台 - 用户列表</title>
-    <meta name="keywords" content="游曳联合运营平台">
-    <meta name="description" content="游曳联合运营平台">
+    <title><?php echo Yii::app()->params['name']; ?> - 用户列表</title>
 
     <link href="<?php echo Yii::app()->baseUrl;?>/assets/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
     <link href="<?php echo Yii::app()->baseUrl;?>/assets/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">

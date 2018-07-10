@@ -198,6 +198,8 @@
 
     <script>
         $(document).ready(function () {
+        	$(".table").dataTable();
+
         	$(".form").hide();
 
         	// mod
@@ -308,6 +310,10 @@
 
 	<!-- layerDate plugin javascript -->
     <script src="<?php echo Yii::app()->baseUrl;?>/assets/js/plugins/layer/laydate/laydate.js"></script>
+
+    <!-- dataTables javascript -->
+    <script src="<?php echo Yii::app()->baseUrl;?>/assets/js/plugins/dataTables/jquery.dataTables.js"></script>
+	<script src="<?php echo Yii::app()->baseUrl;?>/assets/js/plugins/dataTables/dataTables.bootstrap.js"></script>
 </body>
 
 </html>

@@ -46,6 +46,10 @@ class Permission {
                 'name' => '猜猜模板管理',
                 'url' => yii::app()->createUrl('Uea/GuessTemplate')
             ],
+            'BatchGuessTemplate' => [
+                'name' => '批量导入模板',
+                'url' => yii::app()->createUrl('Uea/BatchGuessTemplate')
+            ],
             'LogList' => [
                 'name' => '操作日志',
                 'url' => yii::app()->createUrl('Uea/LogList')

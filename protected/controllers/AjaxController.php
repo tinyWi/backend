@@ -207,6 +207,7 @@ class AjaxController extends Controller
 			}
 			if ($addResult) {
 				$result = ['status' => 0, 'msg' => ''];
+				Console::log("添加模板","成功添加id为{$data['id']} 的模板");
 			} else {
 				$result = ['status' => -1, 'msg' => '添加失败'];
 			}
@@ -221,6 +222,7 @@ class AjaxController extends Controller
 		if($id){
 			NDb::connect(CAICAI)->table('cc_guess_template')->where(["`id`='{$id}'"])->delete();
 			$result = ['status'=>0,'msg'=>''];
+			Console::log("删除模板","成功删除id为{$id} 的模板");
 		}else{
 			$result = ['status' => -1, 'msg' => '该记录为空'];
 		}

@@ -34,9 +34,34 @@ class UeaController extends Controller
 
 	// 猜猜模板管理
 	public function actionGuessTemplate(){
-		$templateList = NDb::connect(CAICAI)->table('cc_guess_template')->limit(10)->select();
+		$templateList = NDb::connect(CAICAI)->table('cc_guess_template')->select();
 		$listData['templateList'] = $templateList;
 		$this->render('guessTemplate',$listData);
+	}
+
+	// 批量导入模板
+	public function actionBatchGuessTemplate(){
+		$subBtn = Functions::getParam('sub');
+		if($subBtn){
+			if(isset($_FILES['file']) && is_uploaded_file($_FILES['file']['tmp_name'])){
+				$phpexcel = new PHPExcel;
+				$excelReader = PHPExcel_IOFactory::createReader('Excel2007');
+				$excelReader->setReadDataOnly(true);
+				$phpexcel = $excelReader->load($_FILES['file']['tmp_name'])->getSheet(0)->toArray();
+				$answerExcel = $excelReader->load($_FILES['file']['tmp_name'])->getSheet(1)->toArray();
+				array_shift($phpexcel);
+				array_shift($answerExcel);
+				foreach( $phpexcel AS $key => $val){
+					$endinfo = json_encode(['answer'=>$answerExcel[$key][1]]);
+					try {
+						Db::connect(CAICAI)->insert("insert into `cc_guess_template` (`id`,`title`,`note`,`subject_id`,`labels`,`selection`,`odds`,`early_publish`,`late_publish`,`end_bet_time`,`end_time`,`guess_type`,`end_info`)  values ('{$val[0]}','{$val[1]}','{$val[2]}','{$val[3]}','{$val[5]}','{$val[6]}','{$val[7]}','{strtotime($val[9])}','{strtotime($val[10])}','{strtotime($val[11])}','{strtotime($val[12])}','4','{$endinfo}')");
+					}catch (Exception $e){
+						Console::log("批量导入失败","id 为{$val[0]} 的模板导入失败");
+					}
+				}
+			}
+		}
+		$this->render('batchGuessTemplate');
 	}
 
 	// 修改资料

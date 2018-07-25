@@ -2,3 +2,4 @@ assets/log/
 protected/runtime
 protected/config/main.php
 index.php
+protected/controllers/TestController.php

@@ -6,6 +6,14 @@
  **/
 class AjaxController extends Controller
 {
+	public function init(){
+		$path = Yii::app()->request->getPathInfo();
+		$pathArr = explode('/',$path);
+		if(!in_array(end($pathArr),Consts::$reqWithoutLogin) && !Yii::app()->session['user']['uid']){
+			Functions::jump( yii::app()->createUrl( 'Index/Login'));
+		}
+	}
+
 	// 用户状态，单用户登录
 	public function actionGetUserStatus(){
 		$uid = Yii::app()->session['user']['uid'];
@@ -237,7 +245,7 @@ class AjaxController extends Controller
 			$row['late_publish'] = date('Y-m-d H:i:s', $row['late_publish']);
 			$row['end_bet_time'] = date('Y-m-d H:i:s', $row['end_bet_time']);
 			$row['end_time'] = date('Y-m-d H:i:s', $row['end_time']);
-			$row['end_info'] = current(json_decode($row['end_info'],true));
+			$row['end_info'] = json_decode($row['end_info'],true)? current(json_decode($row['end_info'],true)): '';
 			$result = ['status'=>0,'temRow'=>$row,'msg'=>''];
 		}else{
 			$result = ['status'=>-1,'msg'=>'该记录为空'];

@@ -24,13 +24,6 @@ class Consts {
 	// 是否邮箱登录
 	const USER_EMAIL_LOGIN = 1;
 
-	// 表
-	const TABLE_MAIN = 1;
-	const TABLE_LOG = 2;
-	const TABLE_PLATFORM = 3;
-	const TABLE_UEA = 4;
-	const TABLE_UER = 5;
-
 	// 权限类型
 	const AUTH_OPRATION = 0;
 	const AUTH_TASK = 1;
@@ -76,4 +69,12 @@ class Consts {
 	static $allowActList = array(
 		'UserMod'
 	);
+
+	// 非登录可访问
+	static $reqWithoutLogin = [
+		'GetUserStatus',
+		'LoginCheckInfo',
+		'LoginCheckIp',
+		'UserIsValid'
+	];
 }

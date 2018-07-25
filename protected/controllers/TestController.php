@@ -2,6 +2,6 @@
 class TestController extends Controller{
 
 	public function actionIndex(){
-		echo Yii::app()->params['name'];
+		$this->render('index');
 	}
 }
